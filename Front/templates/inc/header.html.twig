@@ -33,10 +33,18 @@
 								<i class="ti-user"></i>
 								<a href="#">Mon compte</a>
 							</li>
-							<li>
-								<i class="ti-power-off"></i>
-								<a href="login.html#">Se connecter</a>
-							</li>
+							{% if app.user %}
+								<li>
+									<i class="ti-power-off"></i>
+									<a href="{{path('app_logout')}}">Se deconnecter</a>
+								</li>
+							{% else %}
+								<li>
+									<i class="ti-power-off"></i>
+									<a href="{{path('app_login')}}">Se connecter</a>
+								</li>
+							{% endif %}
+
 						</ul>
 					</div>
 					<!-- End Top Right -->
@@ -166,8 +174,7 @@
 		<div class="container">
 			<div class="cat-nav-head">
 				<div class="row">
-					<div class="col-lg-3">
-					</div>
+					<div class="col-lg-3"></div>
 					<div class="col-lg-9 col-12">
 						<div
 							class="menu-area">
@@ -186,23 +193,10 @@
 												<a href="#">Services</a>
 											</li>
 											<li>
-												<a href="#">Shop<i class="ti-angle-down"></i>
-													<span class="new">New</span>
-												</a>
-												<ul class="dropdown">
-													<li>
-														<a href="cart.html">Cart</a>
-													</li>
-													<li>
-														<a href="checkout.html">Checkout</a>
-													</li>
-												</ul>
-											</li>
-											<li>
 												<a href="#">Pages</a>
 											</li>
 											<li>
-												<a href="contact.html">Contact</a>
+												<a href="#">Contact</a>
 											</li>
 										</ul>
 									</div>
@@ -218,4 +212,3 @@
 	<!--/ End Header Inner -->
 </header>
 <!--/ End Header -->
-

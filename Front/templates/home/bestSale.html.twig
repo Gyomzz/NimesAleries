@@ -1,19 +1,31 @@
-<div class="container row mx-auto mt-4 justify-content-md-center">
-	<h2 class="">Produits phares</h2>
-	{# <?php foreach ($produitsShow as $key => $value): ?> #}
-	<div class="card col-12 col-md-3 col-lg-2 my-2 mx-2">
-		<img class="card-img-top  img-fluid" src="https://picsum.photos/id/<?= $key + 237;?>/100" alt="Card image cap">
-		<div class="card-body">
-			<h5 class="card-title">{# <?= $value['mark']; ?> #}</h5>
-			<h6 class="card-subtitle">{# <?= $value['title']; ?> #}</h6>
-			<p class="card-text">{# <?= $value['price']; ?> #}
-				$</p>
-			<p class="card-text">{# <?= $value['description']; ?> #}</p>
-			<p class="card-text">{# <?= $value['quantity']; ?> #}
-				in stock</p>
-			<a href="#" class="btn btn-primary">Buy</a>
-		</div>
+<div class="container">
+	<div>
+		<h2 class="">Produits phares</h2>
 	</div>
-	{# <?php endforeach; ?> #}
-</div>
+	<div
+		class="row">
+		{# <?php foreach ($produitsShow as $key => $value): ?> #}
+		{% for i in 0..10 %}
+			<div class="card col-12 col-md-3 col-lg-2 my-2 mx-2">
+				<img class="card-img-top  img-fluid" src="https://picsum.photos/200" alt="Card image cap">
 
+				<div class="card-body">
+					<h5 class="card-title">{# <?= $value['mark']; ?> #}</h5>
+					<h6 class="card-subtitle">{# <?= $value['title']; ?> #}</h6>
+					<p
+						class="card-text">
+						{# <?= $value['price']; ?> #}
+						$</p>
+					<p class="card-text">{# <?= $value['description']; ?> #}</p>
+					<p
+						class="card-text">
+						{# <?= $value['quantity']; ?> #}
+						in stock</p>
+					<a href="#" class="btn btn-primary">Buy</a>
+				</div>
+			</div>
+		{% endfor %}
+
+		{# <?php endforeach; ?> #}
+	</div>
+</div>

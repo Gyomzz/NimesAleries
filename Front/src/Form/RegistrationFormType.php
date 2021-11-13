@@ -51,7 +51,7 @@ class RegistrationFormType extends AbstractType
             ->add('first_name', TextType::class)
             ->add('birthday', BirthdayType::class, [
                 'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                    'Année' => 'Year', 'Mois' => 'Month', 'Jour' => 'Day',
             ],
             ])
             ->add('address', TextareaType::class)
