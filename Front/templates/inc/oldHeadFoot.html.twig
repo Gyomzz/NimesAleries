@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="width: 100%;">
+	<div class="container-lg d-flex flex-wrap">
+		<div class="col-md-1 align-items-center d-none d-lg-block">
+			<a class="navbar-brand" href="/">
+				<img class="logo">
+			</div>
+			{# TODO
+			            switch to form with formbuilder #}
+			<form class="ms-2 d-flex col-xxl-5 col-xl-4 col-lg-5 col-md-5 col-11">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+			<div class="ms-3 col-md-5 col-11">
+				<div class=" d-flex justify-content-md-between flex-wrap flex-md-nowrap my-2 text-md-center">
+					<a class="navbar-brand col-12 col-md " href="{{ path('app_login')}}" style="font-size: small;">
+						Mon compte</a>
+					<a class="navbar-brand col-12 col-md " href="moncompte" style="font-size: small;">
+						Mes commandes</a>
+					<a class="navbar-brand col-12 col-md " href="#" style="font-size: small;">
+						Panier</a>
+					<a class="navbar-brand col-12 col-md " href="{{ path('app_logout')}}" style="font-size: small;">Deconnexion</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+
+
+<footer class="mt-auto">
+
+
+	<div style=" background-color: darkgrey;">
+
+		<div class="container w-100 mx-auto justify-content-between row flew-wrap">
+			<div class="col-12 col-sm-4 text-center">
+				<span>🚚</span>
+				<p>Livraison offerte</p>
+			</div>
+			<div class="col-12 col-sm-4 text-center">
+				<span>💳</span>
+				<p>Paiement Sécurisé</p>
+			</div>
+			<div class="col-12 col-sm-4 text-center">
+				<span>📞</span>
+				<p>Contact : 01 97 23 65 44</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="bg-dark">
+		<div class="container w-100 mx-auto justify-content-between row flex-wrap ">
+			<a href="" class="col-12 col-sm-4 text-white text-center">Mentions legales</a>
+			<a href="" class="col-12 col-sm-4 text-white text-center">CGV</a>
+			<a href="" class="col-12 col-sm-4 text-white text-center">Protection des données</a>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<div class="container my-5 shadow py-5" style="max-width: 1200px;">
+		<div>
+			<h1>Nouveau ici ?
+				<br>
+				Inscrivez-vous facilement dès à présent et bénéficiez de nombreux avantages</h1>
+		</div>
+		<div class="my-5">
+			<p>✔️  Commander plus rapidement lors de votre prochain achat</p>
+			<p>✔️  Historique des commandes passées</p>
+			<p>✔️  Créer et gérer facilement des listes de courses</p>
+		</div>
+
+
+		{{ form_start(registrationForm, {'attr' : {'class': 'mt-2 mx-auto'}, 'label': 'Email' }) }}
+
+
+		{{ form_row(registrationForm.email, {'attr' : {'class': 'form-control my-3'}}) }}
+
+		{{ form_row(registrationForm.plainPassword, {'attr' : {'class': 'form-control my-3'}, 'label': 'Mot de passe' }) }}
+
+		{{ form_row(registrationForm.name, {'attr' : {'class': 'form-control my-3'}, 'label': 'Nom' }) }}
+
+		{{ form_row(registrationForm.first_name, {'attr' : {'class': 'form-control my-3'}, 'label': 'Prénom' }) }}
+
+		{{ form_row(registrationForm.birthday, {'attr' : {'class': 'form-control my-3'}, 'label': 'Date de naissance' }) }}
+
+		{{ form_row(registrationForm.gender, {'attr' : {'class': 'my-2 px-2'}, 'label': 'Genre' }) }}
+
+		{{ form_row(registrationForm.address, {'attr' : {'class': 'form-control my-3'}, 'label': 'Adresse' }) }}
+
+
+		{{ form_row(registrationForm.agreeTerms, {'attr' : {'class': 'my-3'}, 'label': 'J’accepte que mes données et les informations relatives à l’utilisation des offres de Nimes Aleries et des partenaires soient saisies pour le moment dans un profil d’utilisateur central et soient utilisées par Nimes Aleries pour l’optimisation (personnalisation) des offres. Le consentement peut être révoqué à tout moment ; vous trouverez d’autres détails dans la politique de protection des données.' }) }}
+
+
+		<button type="submit" class="btn btn-success my-4 w-100">S'inscrire</button>
+
+		{{ form_end(registrationForm) }}
+	</div>
+
+{% endblock %}
+
