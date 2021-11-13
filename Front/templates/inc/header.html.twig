@@ -89,7 +89,6 @@
 						<div class="search-bar">
 							<select>
 								<option selected="selected">Catégories</option>
-								{# TODO get categories #}
 								{% for item in app.session.get('categories') %}
 									<option>{{item.name}}</option>
 								{% endfor %}
@@ -183,9 +182,10 @@
 								<div class="navbar-collapse">
 									<div class="nav-inner">
 										<ul class="nav main-menu menu navbar-nav">
-											<li class="active">
+											<li {% if app.request.requesturi == '/' %} class="active" {% endif %}>
 												<a href="{{path('index')}}">Accueil</a>
 											</li>
+
 											<li>
 												<a href="#">Produits</a>
 											</li>
