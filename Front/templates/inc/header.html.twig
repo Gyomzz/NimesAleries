@@ -90,9 +90,9 @@
 							<select>
 								<option selected="selected">Catégories</option>
 								{# TODO get categories #}
-								<option>chien</option>
-								<option>chat</option>
-								<option>oiseau</option>
+								{% for item in app.session.get('categories') %}
+									<option>{{item.name}}</option>
+								{% endfor %}
 							</select>
 							<form>
 								<input name="search" placeholder="Rechercher des produits ici ..." type="search">
