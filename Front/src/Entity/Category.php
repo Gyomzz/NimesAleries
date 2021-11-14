@@ -30,7 +30,7 @@ class Category
     private $ordering;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="categories")
      */
     private $id_parent;
 
@@ -73,12 +73,12 @@ class Category
         return $this;
     }
 
-    public function getIdParent(): ?int
+    public function getIdParent()
     {
         return $this->id_parent;
     }
 
-    public function setIdParent(?int $id_parent): self
+    public function setIdParent($id_parent): self
     {
         $this->id_parent = $id_parent;
 

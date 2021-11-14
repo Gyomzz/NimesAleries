@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +15,15 @@ class CategoryType extends AbstractType
         $builder
             ->add('name')
             ->add('ordering')
-            ->add('id_parent')
+            ->add('id_parent', EntityType::class , [
+                'placeholder' => 'Parent',
+                'label' => 'Categorie parente',
+                'class' => Category::class,
+                'choice_label' => function ($category) {
+                    return $category->getName();
+                },
+                'required' => false,
+            ])
         ;
     }
 

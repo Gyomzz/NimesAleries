@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * @IsGranted("ROLE_ADMIN")
@@ -35,6 +36,7 @@ class CrudCategoryController extends AbstractController
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
+        $form['id_parent'] = $form->get('id_parent');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,6 +69,7 @@ class CrudCategoryController extends AbstractController
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
+        $form['id_parent'] = $form->get('id_parent');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
