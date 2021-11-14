@@ -24,7 +24,7 @@ class CrudProductController extends AbstractController
     public function index(ProductRepository $productRepository): Response
     {
         return $this->render('crud_product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $productRepository->findProductOrdersByCat(),
         ]);
     }
 

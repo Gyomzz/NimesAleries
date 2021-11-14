@@ -24,12 +24,15 @@
 					<td>{{ category.name }}</td>
 					<td>{{ category.ordering }}</td>
 					{% if category.idParent %}
-						<td>{{ category.idParent.getName() }}</td>
-						{% else %}
-                        <td></td>
+						<td>{{ category.idParent.getId() }}
+							|
+							{{ category.idParent.getName() }}</td>
+
+					{% else %}
+						<td></td>
 					{% endif %}
 
-					
+
 					<td>
 						<a href="{{ path('crud_category_show', {'id': category.id}) }}">show</a>
 						<a href="{{ path('crud_category_edit', {'id': category.id}) }}">edit</a>

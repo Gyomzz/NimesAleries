@@ -16,7 +16,6 @@ class CategoryType extends AbstractType
             ->add('name')
             ->add('ordering')
             ->add('id_parent', EntityType::class , [
-                'placeholder' => 'Parent',
                 'label' => 'Categorie parente',
                 'class' => Category::class,
                 'choice_label' => function ($category) {

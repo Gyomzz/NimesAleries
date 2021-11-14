@@ -47,4 +47,17 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findProductOrdersByCat()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            ORDER BY p.Id_categorie ASC'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
 }
