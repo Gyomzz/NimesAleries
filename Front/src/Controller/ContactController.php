@@ -39,8 +39,8 @@ class ContactController extends AbstractController
                 ]
                 ],
                 'Subject' =>  $contactFormData['sujets'],
-                'TextPart' => $contactFormData['email']. ' ' .$contactFormData['message'],
-                'HTMLPart' => '<h1>'.$contactFormData['sujets'].'</h1><h2> Nom du client:'.$contactFormData['nom'] .'</h2><p> Numéro de téléphone: '. $contactFormData['telephone'].'<br></p><p>'. $contactFormData['message'],
+                'TextPart' => $contactFormData['email']. ' ' .$contactFormData['message']. ' '. $contactFormData['nom']. ' ' .$contactFormData['telephone'],
+                'HTMLPart' => '<h1>'.$contactFormData['sujets'].'</h1><h2> Nom du client: '.$contactFormData['nom'] .' | email: '. $contactFormData['email'].'</h2><p> Numéro de téléphone: '. $contactFormData['telephone'].'<br></p><p>'. $contactFormData['message'],
                 'CustomID' => "AppGettingStartedTest"
             ]
             ]
