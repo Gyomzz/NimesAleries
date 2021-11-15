@@ -21,20 +21,20 @@ class ContactController extends AbstractController
     if($form->isSubmitted() && $form->isValid()){
         $contactFormData = $form->getData();
         
-        $api_key='37215d7b9c723b196f47ee04d6812460';
-        $api_key_private='2d6681f23f2e4b2bf7df397ad3c7772e'; 
+        $api_key= $this->getParameter('mailJetKey');
+        $api_key_private= $this->getParameter('mailJetKeyPrivate'); 
     
         $mj = new \Mailjet\Client($api_key,$api_key_private,true,['version' => 'v3.1']);
         $body = [
             'Messages' => [
             [
                 'From' => [ 
-                'Email' => 'gmillet@stagiaire-humanbooster.com',
+                'Email' => $this->getParameter('mailJetMail'),
                 'Name' =>  $contactFormData['email']
                 ],
                 'To' => [
                 [
-                    'Email' => 'gmillet@stagiaire-humanbooster.com',
+                    'Email' => $this->getParameter('mailJetMail'),
                     'Name' => 'NimesAleriesContact'
                 ]
                 ],
