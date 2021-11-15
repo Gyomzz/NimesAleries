@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+
+{% block body %}
+	<section id="contact-us" class="contact-us section">
+		<div class="container">
+			<div class="contact-head">
+				<div class="row">
+					<div class="col-lg-8 col-12">
+						<div class="form-main">
+							<div class="title">
+								<h4>Entrer en contact</h4>
+								<h3>Ecrivez-Nous un message</h3>
+							</div>
+							{{ form_start(form, {'attr': {'class': 'form'}}) }}
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<label>
+										Votre Nom
+										<span style="color: #ff2c18;">*</span>
+									</label>
+									{{ form_row(form.nom, {'attr': {'class': 'form-group'}}) }}
+								</div>
+								<div class="col-lg-6 col-12">
+									<label>
+										Objet
+										<span style="color: #ff2c18;">*</span>
+									</label>
+									{{ form_row(form.sujets, {'attr': {'class': 'form-group'}}) }}
+								</div>
+								<div class="col-lg-6 col-12">
+									<label>
+										Votre Email
+										<span style="color: #ff2c18;">*</span>
+									</label>
+									{{ form_row(form.email, {'attr': {'class': 'form-group'}}) }}
+								</div>
+								<div class="col-lg-6 col-12">
+									<label>
+										Votre Téléphone
+										<span style="color: #ff2c18;">*</span>
+									</label>
+									{{ form_row(form.telephone, {'attr': {'class': 'form-group'}}) }}
+								</div>
+								<div class="col-12">
+									<label>
+										Votre Message
+										<span style="color: #ff2c18;">*</span>
+									</label>
+
+									{{ form_row(form.message, {'attr': {'class': 'form-group message'}}) }}
+								</div>
+								<div class="col-12">
+									<div class="form-group button">
+										{{ form_row(form.save, {'attr': {'class': 'form-control btn btn-primary py-3 px-5'}}) }}
+									</div>
+								</div>
+							</div>
+							{{ form_end(form) }}
+
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-4 col-12">
+					<div class="single-head">
+						<div class="single-info">
+							<i class="fa fa-phone"></i>
+							<h4 class="title">Appellez-nous:</h4>
+							<ul>
+								<li>+123 456-789-1120</li>
+								<li>+522 672-452-1120</li>
+							</ul>
+						</div>
+						<div class="single-info">
+							<i class="fa fa-envelope-open"></i>
+							<h4 class="title">Email:</h4>
+							<ul>
+								<li><a href="mailto:concact@nimesaleries.com">concact@nimesaleries.com</a></li>
+								<li><a href="mailto:concact@nimesaleries.com">support@nimesaleries.com</a></li>
+							</ul>
+						</div>
+						<div class="single-info">
+							<i class="fa fa-location-arrow"></i>
+							<h4 class="title">Notre addresse:</h4>
+							<ul>
+								<li>6 Rue Bourdaloue, Nîmes
+																																																																																											France</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

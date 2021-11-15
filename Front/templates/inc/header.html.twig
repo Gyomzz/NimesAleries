@@ -195,8 +195,9 @@
 											<li>
 												<a href="#">Pages</a>
 											</li>
-											<li>
-												<a href="#">Contact</a>
+											<li {% if app.request.requesturi == '/contact' %} class="active" {% endif %}>
+
+												<a href="/contact">Contact</a>
 											</li>
 										</ul>
 									</div>
