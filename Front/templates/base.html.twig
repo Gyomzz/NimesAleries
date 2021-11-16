@@ -8,7 +8,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																           and uncomment the following Encore helpers to start using Symfony UX #}
+																		           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 			<!-- StyleSheet -->
@@ -71,8 +71,7 @@
 		{% block body %}
 
 			{% if  title == 'NimesAleries | home' %}
-
-				{% include 'home/carousel.html.twig' %}
+				{% include 'home/carousel.html.twig' with {'carousel': app.session.get('carousel') } %}
 				{% include 'home/bestSale.html.twig' %}
 				{% include 'home/popular.html.twig' %}
 				{% include 'home/shopService.html.twig' %}
