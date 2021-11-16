@@ -54,10 +54,16 @@ class Orders
      */
     private $Id_user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="Product_order")
+     */
+    private $products;
+
 
     public function __construct()
     {
         $this->ordersProducts = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,6 +180,33 @@ class Orders
             if ($ordersProduct->getIdOrder() === $this) {
                 $ordersProduct->setIdOrder(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->addProductOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->removeElement($product)) {
+            $product->removeProductOrder($this);
         }
 
         return $this;
