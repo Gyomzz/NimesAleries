@@ -18,9 +18,10 @@ class CategoryController extends AbstractController
      */
     public function index(): Response
     {
+        $this->forward('App\Controller\CrudCarouselController:getCarouselOrder');
         $this->getCategory();
         return $this->render('base.html.twig', [
-            'title' => 'NimesAleries | home'
+            'title' => 'NimesAleries | home',
         ]);
     }
 
