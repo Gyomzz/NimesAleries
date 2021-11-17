@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,13 +32,19 @@ class CrudProductController extends AbstractController
     /**
      * @Route("/new", name="crud_product_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $brochureFile */
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureName = $fileUploader->upload($pictureFile);
+                $product->setImage($pictureName);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
@@ -64,12 +71,18 @@ class CrudProductController extends AbstractController
     /**
      * @Route("/{id}/edit", name="crud_product_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Product $product): Response
+    public function edit(Request $request, Product $product, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $brochureFile */
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureName = $fileUploader->upload($pictureFile);
+                $product->setImage($pictureName);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('crud_product_index', [], Response::HTTP_SEE_OTHER);

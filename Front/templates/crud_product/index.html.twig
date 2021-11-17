@@ -30,7 +30,10 @@
 					<td>{{ product.description }}</td>
 					<td>{{ product.price }}</td>
 					<td>{{ product.active ? 'Yes' : 'No' }}</td>
-					<td><img src="{{ product.image }}"></td>
+					<td>
+						<a href="{{ asset('uploads/' ~ product.image) }}">Voir l'image</a>
+					</td>
+
 					<td>{{ product.getIdCategorie().getId() }}
 						|
 						{{ product.getIdCategorie().getName() }}</td>
