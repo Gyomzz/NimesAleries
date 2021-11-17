@@ -73,6 +73,12 @@
 					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<div class="text-right mt-3">
+						<a href="{{ path('app_forgot_password_request') }}">
+
+							Mot de passe oublié ?
+						</a>
+					</div>
 					<button class="btn btn-success mt-4 w-100" type="submit">
 
 						Se connecter
@@ -80,15 +86,15 @@
 				</div>
 
 				{#
-																            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																            See https://symfony.com/doc/current/security/remember_me.html
-																
-																            <div class="checkbox mb-3">
-																                <label>
-																                    <input type="checkbox" name="_remember_me"> Remember me
-																                </label>
-																            </div>
-																        #}
+																																																            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																																																            See https://symfony.com/doc/current/security/remember_me.html
+																																																
+																																																            <div class="checkbox mb-3">
+																																																                <label>
+																																																                    <input type="checkbox" name="_remember_me"> Remember me
+																																																                </label>
+																																																            </div>
+																																																        #}
 
 
 			</form>
@@ -110,4 +116,3 @@
 		{% endif %}
 	</div>
 {% endblock %}
-

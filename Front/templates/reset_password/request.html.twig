@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password
+{% endblock %}
+
+{% block body %}
+	{% for flashError in app.flashes('reset_password_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+	<h1 class="mt-3 text-center">Demander un nouveau mot de passe</h1>
+	<div class="my-3 mx-auto" style="max-width: 1200px; height: 300px; ">
+
+		{{ form_start(requestForm) }}
+		<div class="mb-2">
+			<p>
+				Veuillez entrer l’adresse e-mail avec laquelle vous vous êtes enregistré. Vous recevrez ensuite un e-mail de la boutique en ligne NimesAleries avec un lien vous permettant de réinitialiser votre mot de passe.
+			</p>
+		</div>
+		{{ form_widget(requestForm.email) }}
+
+		<button class="mt-2 btn btn-primary rounded">Envoyer un e-mail de réinitialisation de mot de passe</button>
+
+		{{ form_end(requestForm) }}
+	</div>
+	{% include "home/shopService.html.twig" %}
+{% endblock %}
