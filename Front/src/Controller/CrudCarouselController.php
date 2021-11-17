@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @IsGranted("ROLE_ADMIN")
  * @Route("/crud/carousel")
  */
 class CrudCarouselController extends AbstractController
@@ -30,6 +29,7 @@ class CrudCarouselController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="crud_carousel_new", methods={"GET","POST"})
      */
     public function new(Request $request, FileUploader $fileUploader): Response
@@ -69,6 +69,7 @@ class CrudCarouselController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="crud_carousel_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Carousel $carousel, FileUploader $fileUploader): Response
@@ -95,6 +96,7 @@ class CrudCarouselController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="crud_carousel_delete", methods={"POST"})
      */
     public function delete(Request $request, Carousel $carousel): Response
