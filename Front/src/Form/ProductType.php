@@ -7,6 +7,7 @@ use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -18,7 +19,9 @@ class ProductType extends AbstractType
         $builder
             ->add('mark')
             ->add('name')
-            ->add('description')
+            ->add('description', TextareaType::class, [
+                'attr' => ['rows' => 6],
+            ])
             ->add('price')
             ->add('active')
             ->add('picture', FileType::class, [

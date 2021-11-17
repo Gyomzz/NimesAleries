@@ -38,10 +38,6 @@ class Orders
      */
     private $delivery_address;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $invoice;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -119,17 +115,6 @@ class Orders
         return $this;
     }
 
-    public function getInvoice(): ?string
-    {
-        return $this->invoice;
-    }
-
-    public function setInvoice(?string $invoice): self
-    {
-        $this->invoice = $invoice;
-
-        return $this;
-    }
 
     public function getValidityDate(): ?\DateTimeInterface
     {
