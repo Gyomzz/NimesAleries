@@ -1,11 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}Password Reset Email Sent
+{% endblock %}
 
 {% block body %}
-    <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+	<div class="mx-auto my-5" style="max-width: 1200px;">
+		<div class="row justify-content-around">
+			<div class="col grid-item grid-item--12 grid-item--m--6">
+				<div class="p-figure"><img src="{{asset('images/merci.jpg')}}" alt="Nous vous remercions pour les données saisies"></div>
+			</div>
+			<div class="col grid-item grid-item--12 grid-item--m--6">
+				<div class="p-content">
+					<div class="section section--no-padding-x section--pt-s">
+						<div class="section-content">
+							<h1 class="heading h1">
+								Nous vous remercions pour les données saisies
+							</h1>
+							<p class="p">Nous venons d’envoyer un e-mail.</p>
+							<ul class="list list--unstyled list--icons list--colored list--bg-orange list--fg-white">
+								<li>
+									<i class="icon icon--touch icon--size-s icon--color-white"></i>
+									<div>Le cas échéant, la notification peut prendre quelques minutes.
+										<br>Veuillez
+										<strong>cliquer sur le lien</strong>
+										dans l’e-mail pour définir un nouveau mot de passe.</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
