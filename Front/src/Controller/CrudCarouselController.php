@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Carousel;
 use App\Form\CarouselType;
 use App\Repository\CarouselRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,13 +30,19 @@ class CrudCarouselController extends AbstractController
     /**
      * @Route("/new", name="crud_carousel_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $carousel = new Carousel();
         $form = $this->createForm(CarouselType::class, $carousel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $brochureFile */
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureName = $fileUploader->upload($pictureFile);
+                $carousel->setImage($pictureName);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($carousel);
             $entityManager->flush();
@@ -62,12 +69,18 @@ class CrudCarouselController extends AbstractController
     /**
      * @Route("/{id}/edit", name="crud_carousel_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Carousel $carousel): Response
+    public function edit(Request $request, Carousel $carousel, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(CarouselType::class, $carousel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $brochureFile */
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureName = $fileUploader->upload($pictureFile);
+                $carousel->setImage($pictureName);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('crud_carousel_index', [], Response::HTTP_SEE_OTHER);
