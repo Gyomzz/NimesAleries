@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class CrudCarouselController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="crud_carousel_index", methods={"GET"})
      */
     public function index(CarouselRepository $carouselRepository): Response
