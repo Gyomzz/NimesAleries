@@ -1,0 +1,51 @@
+---
+stages:
+  - test
+  - build
+  - deploy
+
+test - lint - api:
+  stage: test
+  image: cytopia/phpcs
+  allow_failure: true
+  script:
+    - phpcs --standard=PSR2 --report-junit=report.junit.xml ./api/src
+  artifacts:
+    paths:
+      - report.junit.xml
+    reports:
+      junit: report.junit.xml
+
+Front - install deps:
+  stage: build
+  image: pockost/php:7.4-apache-buster
+  only:
+    changes:
+      - Front/composer.json
+  script:
+    - cd Front
+    - composer install --no-dev --no-interaction --no-scripts --optimize-autoloader
+  artifacts:
+    paths:
+      - Front/vendor
+
+Front - deploy:
+  stage: deploy
+  image: pockost/phploy:4.9.3
+  only:
+    changes:
+      - Front/**/*
+  except:
+    changes:
+      - api/composer.json
+  script:
+    - phploy -s client
+
+Front - deploy with vendor:
+  stage: deploy
+  image: pockost/phploy:4.9.3
+  only:
+    changes:
+      - Front/composer.json
+  script:
+    - phploy -s client-with-vendor
