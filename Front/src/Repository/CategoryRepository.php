@@ -62,5 +62,16 @@ class CategoryRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
+
+    public function findSousCat($id){
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.id_parent = :id')
+            ->setParameter('id', $id)
+            ->orderBy('c.ordering', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
     
 }

@@ -18,6 +18,11 @@ class CategoryController extends AbstractController
      */
     public function index(): Response
     {
+        $test = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findSousCat(1);
+        var_dump($test);
+        
         $this->forward('App\Controller\CrudCarouselController:getCarouselOrder');
         $this->getCategory();
         return $this->render('base.html.twig', [
