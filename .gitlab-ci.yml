@@ -25,7 +25,7 @@ Front - deploy:
     - wget --quiet https://github.com/banago/PHPloy/archive/master.zip
     - unzip -qq master.zip
     - mv ./PHPloy-master/dist/phploy.phar phploy
-    - phploy -s client
+    - php phploy -s client
 
 Front - deploy with vendor:
   stage: deploy
@@ -39,4 +39,4 @@ Front - deploy with vendor:
     - wget --quiet https://github.com/banago/PHPloy/archive/master.zip
     - unzip -qq master.zip
     - mv ./PHPloy-master/dist/phploy.phar phploy
-    - phploy -s client-with-vendor
+    - php phploy -s client-with-vendor
