@@ -63,7 +63,7 @@ class CategoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findSousCat($id){
+    public function getChild($id){
         $qb = $this->createQueryBuilder('c')
             ->where('c.id_parent = :id')
             ->setParameter('id', $id)

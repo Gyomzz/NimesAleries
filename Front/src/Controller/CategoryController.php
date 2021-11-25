@@ -18,16 +18,14 @@ class CategoryController extends AbstractController
      */
     public function index(): Response
     {
-        $test = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->findSousCat(1);
-        
-        $this->forward('App\Controller\CrudCarouselController:getCarouselOrder');
+        $this->forward('App\Controller\CrudCarouselController:getCarouselOrder:');
         $this->getCategory();
         return $this->render('base.html.twig', [
             'title' => 'NimesAleries | home',
+            'repo' => $this->getDoctrine()->getManager()->getRepository(Category::class),
         ]);
     }
+
 
     /**
      * @Route("/all", name="all_category")
@@ -45,7 +43,7 @@ class CategoryController extends AbstractController
                 'No category found'
             );
         }
-        // return $categories;
+        return $categories;
     }
     private $requestStack;
 
