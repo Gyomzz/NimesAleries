@@ -110,6 +110,7 @@ class CrudCarouselController extends AbstractController
             // remove file locally
             $filesystem = new Filesystem;
             $filesystem->remove($fileUploader->getTargetDirectory() . $carousel->getImage());
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($carousel);
             $entityManager->flush();
