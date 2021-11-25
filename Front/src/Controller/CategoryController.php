@@ -18,14 +18,16 @@ class CategoryController extends AbstractController
      */
     public function index(): Response
     {
-        $this->forward('App\Controller\CrudCarouselController:getCarouselOrder:');
         $this->getCategory();
         return $this->render('base.html.twig', [
             'title' => 'NimesAleries | home',
-            'repo' => $this->getDoctrine()->getManager()->getRepository(Category::class),
+            'carousel' => $this->get('App\Controller\CrudCarouselController:getCarouselOrder:')
         ]);
     }
 
+    public function getRepo(){
+        return $this->getDoctrine()->getManager()->getRepository(Category::class);
+    }
 
     /**
      * @Route("/all", name="all_category")

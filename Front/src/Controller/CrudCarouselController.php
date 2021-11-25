@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @Route("/crud/carousel")
@@ -82,6 +83,9 @@ class CrudCarouselController extends AbstractController
             /** @var UploadedFile $brochureFile */
             $pictureFile = $form->get('picture')->getData();
             if ($pictureFile) {
+                // remove file locally
+                $filesystem = new Filesystem;
+                $filesystem->remove($fileUploader->getTargetDirectory() . $carousel->getImage());
                 $pictureName = $fileUploader->upload($pictureFile);
                 $carousel->setImage($pictureName);
             }
@@ -100,9 +104,12 @@ class CrudCarouselController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="crud_carousel_delete", methods={"POST"})
      */
-    public function delete(Request $request, Carousel $carousel): Response
+    public function delete(Request $request, Carousel $carousel, FileUploader $fileUploader): Response
     {
         if ($this->isCsrfTokenValid('delete'.$carousel->getId(), $request->request->get('_token'))) {
+            // remove file locally
+            $filesystem = new Filesystem;
+            $filesystem->remove($fileUploader->getTargetDirectory() . $carousel->getImage());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($carousel);
             $entityManager->flush();
@@ -115,7 +122,7 @@ class CrudCarouselController extends AbstractController
             ->getRepository(Carousel::class)
             ->findCarouselByOrders();
         $session = $this->requestStack->getSession();
-        $session = $this->get('session');        
+        $session = $this->get('session');     
         $session->set('carousel', $carousel);
 
         if(!$carousel){
@@ -123,7 +130,7 @@ class CrudCarouselController extends AbstractController
                 'No category found'
             );
         }
-        // return $carousel;
+        return $carousel;
     }
     public function __construct(RequestStack $requestStack)
     {
