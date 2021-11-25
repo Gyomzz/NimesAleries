@@ -5,7 +5,7 @@ stages:
 
 Front - install deps:
   stage: build
-  image: php:7.4-apache-buster
+  image: php:7.4
   only:
     changes:
       - Front/composer.json
