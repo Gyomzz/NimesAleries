@@ -1,0 +1,22 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+<link rel="stylesheet" href="{{ asset('css/404.css') }}">
+<main class="container">
+	{% for i in 1..40 %}
+		<span class="particle">4</span>
+	{% endfor %}
+
+	{% for i in 1..40 %}
+		<span class="particle">0</span>
+	{% endfor %}
+
+	<article class="content">
+		<p>Zut étranger,</p>
+		<p>Tu t'es perdu dans la galaxie 
+			<strong>404</strong>.</p>
+		<p>
+			<button>
+				<a href="{{path('index')}}" style="text-decoration: none;">Retourner sur terre.</a>
+			</button>
+		</p>
+	</article>
+</main>
