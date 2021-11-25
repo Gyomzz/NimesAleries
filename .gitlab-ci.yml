@@ -5,7 +5,7 @@ stages:
 
 Front - install deps:
   stage: build
-  image: php:7.4
+  image: composer:latest
   script:
     - cd Front
     - composer install --no-dev --no-interaction --no-scripts --optimize-autoloader
