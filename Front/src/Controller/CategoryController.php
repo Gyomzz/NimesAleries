@@ -21,7 +21,6 @@ class CategoryController extends AbstractController
         $test = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findSousCat(1);
-        var_dump($test);
         
         $this->forward('App\Controller\CrudCarouselController:getCarouselOrder');
         $this->getCategory();
