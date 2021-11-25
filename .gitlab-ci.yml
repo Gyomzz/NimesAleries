@@ -15,11 +15,16 @@ Front - install deps:
 
 Front - deploy:
   stage: deploy
-  image: phploy:latest
+  image: php:7.4
   except:
     changes:
       - api/composer.json
   script:
+    - apt-get update -yqq
+    - apt-get install git zip unzip curl wget openssh-client -yqq
+    - wget --quiet https://github.com/banago/PHPloy/archive/master.zip
+    - unzip -qq master.zip
+    - mv ./PHPloy-master/dist/phploy.phar phploy
     - phploy -s client
 
 Front - deploy with vendor:
@@ -29,4 +34,9 @@ Front - deploy with vendor:
     changes:
       - Front/composer.json
   script:
+    - apt-get update -yqq
+    - apt-get install git zip unzip curl wget openssh-client -yqq
+    - wget --quiet https://github.com/banago/PHPloy/archive/master.zip
+    - unzip -qq master.zip
+    - mv ./PHPloy-master/dist/phploy.phar phploy
     - phploy -s client-with-vendor
