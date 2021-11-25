@@ -35,7 +35,7 @@ Front - deploy:
 
 Front - deploy with vendor:
   stage: deploy
-  image: phploy:latest
+  image: php:7.4
   script:
     - apt-get update -yqq
     - apt-get install git zip unzip curl wget openssh-client -yqq
