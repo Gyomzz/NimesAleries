@@ -19,9 +19,6 @@ Front - install deps:
 Front - deploy:
   stage: deploy
   image: php:7.4
-  only:
-    changes:
-      - Front/**/*
   except:
     changes:
       - Front/composer.json
@@ -36,9 +33,6 @@ Front - deploy:
 Front - deploy with vendor:
   stage: deploy
   image: php:7.4
-  only:
-    changes:
-      - Front/composer.json
   script:
     - apt-get update -yqq
     - apt-get install git zip unzip curl wget openssh-client -yqq
