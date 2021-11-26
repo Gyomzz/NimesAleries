@@ -6,12 +6,9 @@ stages:
 Front - install deps:
   stage: build
   image: composer:latest
-  only:
-    changes:
-      - Front/composer.json
   script:
     - cd Front
-    - composer install --no-dev --no-interaction --no-scripts --optimize-autoloader
+    - composer SYMFONY_ENV=prod install --no-dev --no-interaction --no-scripts --optimize-autoloader
   artifacts:
     paths:
       - Front/vendor
@@ -36,9 +33,6 @@ Front - deploy:
 Front - deploy with vendor:
   stage: deploy
   image: php:7.4
-  only:
-    changes:
-      - Front/composer.json
   script:
     - apt-get update -yqq
     - apt-get install git zip unzip curl wget openssh-client -yqq
