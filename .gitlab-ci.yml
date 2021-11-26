@@ -6,9 +6,6 @@ stages:
 Front - install deps:
   stage: build
   image: composer:latest
-  only:
-    changes:
-      - Front/composer.json
   script:
     - cd Front
     - composer install --no-dev --no-interaction --no-scripts --optimize-autoloader
@@ -19,6 +16,9 @@ Front - install deps:
 Front - deploy:
   stage: deploy
   image: php:7.4
+  only:
+    changes:
+      - Front/**/*
   except:
     changes:
       - Front/composer.json
