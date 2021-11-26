@@ -1,5 +1,0 @@
-{
-    "require": {
-        "symfony/web-profiler-bundle": "^5.3"
-    }
-}
