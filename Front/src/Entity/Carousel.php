@@ -32,6 +32,16 @@ class Carousel
      */
     private $ordering;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $teaser;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Carousel
     public function setOrdering(?int $ordering): self
     {
         $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTeaser(): ?string
+    {
+        return $this->teaser;
+    }
+
+    public function setTeaser(?string $teaser): self
+    {
+        $this->teaser = $teaser;
 
         return $this;
     }

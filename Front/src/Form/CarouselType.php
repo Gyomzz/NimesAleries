@@ -39,6 +39,8 @@ class CarouselType extends AbstractType
                 ],
             ])
             ->add('ordering')
+            ->add('description')
+            ->add('teaser')
         ;
     }
 
