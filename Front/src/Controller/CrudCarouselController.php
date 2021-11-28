@@ -20,7 +20,6 @@ use Symfony\Component\Filesystem\Filesystem;
 class CrudCarouselController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="crud_carousel_index", methods={"GET"})
      */
     public function index(CarouselRepository $carouselRepository): Response
@@ -32,7 +31,6 @@ class CrudCarouselController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="crud_carousel_new", methods={"GET","POST"})
      */
     public function new(Request $request, FileUploader $fileUploader): Response
@@ -74,7 +72,6 @@ class CrudCarouselController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="crud_carousel_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Carousel $carousel, FileUploader $fileUploader): Response
@@ -105,7 +102,6 @@ class CrudCarouselController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="crud_carousel_delete", methods={"POST"})
      */
     public function delete(Request $request, Carousel $carousel, FileUploader $fileUploader): Response
@@ -122,23 +118,5 @@ class CrudCarouselController extends AbstractController
 
         return $this->redirectToRoute('crud_carousel_index', [], Response::HTTP_SEE_OTHER);
     }
-    public function getCarouselOrder(){
-        $carousel = $this->getDoctrine()
-            ->getRepository(Carousel::class)
-            ->findCarouselByOrders();
-        $session = $this->requestStack->getSession();
-        $session = $this->get('session');     
-        $session->set('carousel', $carousel);
-
-        if(!$carousel){
-            throw $this->createNotFoundException(
-                'No category found'
-            );
-        }
-        return $carousel;
-    }
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-    }
+    
 }
