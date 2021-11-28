@@ -8,7 +8,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																		           and uncomment the following Encore helpers to start using Symfony UX #}
+																				           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 			<!-- StyleSheet -->
@@ -52,17 +52,19 @@
 
 
 	</head>
-	<body
-		class="js">
-		<!-- Preloader -->
-		<div class="preloader">
-			<div class="preloader-inner">
-				<div class="preloader-icon">
-					<span></span>
-					<span></span>
+	<body class="js">
+		{% if is_granted('ROLE_ADMIN') %}
+			{% else %}
+				<!-- Preloader -->
+				<div class="preloader">
+					<div class="preloader-inner">
+						<div class="preloader-icon">
+							<span></span>
+							<span></span>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
+		{% endif %}
 
 
 		{% include 'inc/header.html.twig' %}
