@@ -21,13 +21,13 @@ class CategoryController extends AbstractController
         $this->getCategory();
         return $this->render('base.html.twig', [
             'title' => 'NimesAleries | home',
-            'carousel' => $this->get('App\Controller\CrudCarouselController:getCarouselOrder:')
+            'repo' => $this->getDoctrine()->getManager()->getRepository(Category::class),
+            'carousel' => $this->forward('App\Controller\CrudCarouselController:getCarouselOrder:'),
+            'category' => $this->forward('App\Controller\CategoryController:getCategory'),
         ]);
     }
 
-    public function getRepo(){
-        return $this->getDoctrine()->getManager()->getRepository(Category::class);
-    }
+ 
 
     /**
      * @Route("/all", name="all_category")

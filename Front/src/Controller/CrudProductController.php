@@ -26,6 +26,7 @@ class CrudProductController extends AbstractController
     {
         return $this->render('crud_product/index.html.twig', [
             'products' => $productRepository->findProductOrdersByCat(),
+            'title' => 'Gestion des produits',
         ]);
     }
 
@@ -55,6 +56,7 @@ class CrudProductController extends AbstractController
         return $this->renderForm('crud_product/new.html.twig', [
             'product' => $product,
             'form' => $form,
+            'title' => 'Nouveau produit',
         ]);
     }
 
@@ -65,6 +67,7 @@ class CrudProductController extends AbstractController
     {
         return $this->render('crud_product/show.html.twig', [
             'product' => $product,
+            'title' => 'Details du produit',
         ]);
     }
 
@@ -91,6 +94,7 @@ class CrudProductController extends AbstractController
         return $this->renderForm('crud_product/edit.html.twig', [
             'product' => $product,
             'form' => $form,
+            'title' => 'Modification produit',
         ]);
     }
 

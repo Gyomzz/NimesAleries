@@ -23,6 +23,7 @@ class CrudUserController extends AbstractController
     {
         return $this->render('crud_user/index.html.twig', [
             'users' => $userRepository->findRoles(),
+            'title' => 'Gestion des utilisateurs',
         ]);
     }
 
@@ -52,6 +53,7 @@ class CrudUserController extends AbstractController
         return $this->renderForm('crud_user/new.html.twig', [
             'user' => $user,
             'form' => $form,
+            'title' => 'Nouveau utilisateur',
         ]);
     }
 
@@ -82,6 +84,7 @@ class CrudUserController extends AbstractController
         return $this->renderForm('crud_user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
+            'title' => 'Modification utilisateur',
         ]);
     }
 

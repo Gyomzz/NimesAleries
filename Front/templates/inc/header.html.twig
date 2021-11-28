@@ -173,9 +173,9 @@
 		<div class="container">
 			<div class="cat-nav-head">
 				<div class="row">
-					{% if app.request.get('_route') == '' %}
+					{% if  title == 'NimesAleries | home' %}
 						<div class="col-lg-3">
-							{% include "inc/allCategory.html.twig" %}
+							{% include "inc/allCategory.html.twig"  with {'repo' : repo} %}
 						</div>
 						<div class="col-lg-9 col-12">
 							{% include "inc/mainMenu.html.twig" %}

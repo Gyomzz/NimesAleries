@@ -27,6 +27,7 @@ class CrudCarouselController extends AbstractController
     {
         return $this->render('crud_carousel/index.html.twig', [
             'carousels' => $carouselRepository->findAll(),
+            'title' => 'Gestion du carousel',
         ]);
     }
 
@@ -57,6 +58,7 @@ class CrudCarouselController extends AbstractController
         return $this->renderForm('crud_carousel/new.html.twig', [
             'carousel' => $carousel,
             'form' => $form,
+            'title' => 'Ajouter une image aux carousel',
         ]);
     }
 
@@ -67,6 +69,7 @@ class CrudCarouselController extends AbstractController
     {
         return $this->render('crud_carousel/show.html.twig', [
             'carousel' => $carousel,
+            'title' => 'Detail carousel',
         ]);
     }
 
@@ -97,6 +100,7 @@ class CrudCarouselController extends AbstractController
         return $this->renderForm('crud_carousel/edit.html.twig', [
             'carousel' => $carousel,
             'form' => $form,
+            'title' => 'Modifier carousel',
         ]);
     }
 

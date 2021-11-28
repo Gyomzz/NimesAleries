@@ -26,6 +26,7 @@ class CrudCategoryController extends AbstractController
     {
         return $this->render('crud_category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
+            'title' => 'Gestion des catégories',
         ]);
     }
 
@@ -50,6 +51,7 @@ class CrudCategoryController extends AbstractController
         return $this->renderForm('crud_category/new.html.twig', [
             'category' => $category,
             'form' => $form,
+            'title' => 'Ajouter une nouvelle catégorie',
         ]);
     }
 
@@ -60,6 +62,7 @@ class CrudCategoryController extends AbstractController
     {
         return $this->render('crud_category/show.html.twig', [
             'category' => $category,
+            'title' => 'Details de la catégorie',
         ]);
     }
 
@@ -81,6 +84,7 @@ class CrudCategoryController extends AbstractController
         return $this->renderForm('crud_category/edit.html.twig', [
             'category' => $category,
             'form' => $form,
+            'title' => 'Modifier une catégorie',
         ]);
     }
 
