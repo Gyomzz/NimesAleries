@@ -10,6 +10,8 @@
 				<th>Title</th>
 				<th>Image</th>
 				<th>Ordering</th>
+				<th>Description</th>
+				<th>Teaser</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -23,9 +25,12 @@
 					</td>
 
 					<td>{{ carousel.ordering }}</td>
-					<td>
+					<td>{{ carousel.description }}</td>
+					<td>{{ carousel.teaser }}</td>
+					<td class="d-flex justify-content-between">
 						<a href="{{ path('crud_carousel_show', {'id': carousel.id}) }}">show</a>
 						<a href="{{ path('crud_carousel_edit', {'id': carousel.id}) }}">edit</a>
+						{{ include('crud_carousel/_delete_form.html.twig') }}
 					</td>
 				</tr>
 			{% else %}
