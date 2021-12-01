@@ -25,6 +25,7 @@ class ProductType extends AbstractType
             ->add('price')
             ->add('active')
             ->add('created_at')
+            ->add('stock')
             ->add('picture', FileType::class, [
                 'label' => 'Image (Jpeg, Png)',
 

@@ -13,6 +13,7 @@
 				<th>Name</th>
 				<th>Description</th>
 				<th>Price</th>
+				<th>Stock</th>
 				<th>Active</th>
 				<th>Ajouté le</th>
 				<th>Image</th>
@@ -28,6 +29,7 @@
 					<td>{{ product.name }}</td>
 					<td>{{ product.description }}</td>
 					<td>{{ product.price }}</td>
+					<td>{{ product.stock }}</td>
 					<td>{{ product.active ? 'Yes' : 'No' }}</td>
 					<td>{{ product.createdAt|date("d/m/Y") }}</td>
 
