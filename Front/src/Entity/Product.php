@@ -60,6 +60,11 @@ class Product
      */
     private $Product_order;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $created_at;
+
     public function __construct()
     {
         $this->Product_order = new ArrayCollection();
@@ -174,6 +179,18 @@ class Product
     public function removeProductOrder(Orders $productOrder): self
     {
         $this->Product_order->removeElement($productOrder);
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
