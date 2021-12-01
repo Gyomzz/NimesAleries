@@ -8,9 +8,8 @@
 					<li class="{{activeMenu([''])}}">
 						<a href="{{path('index')}}">Accueil</a>
 					</li>
-
-					<li>
-						<a href="#">Produits</a>
+					<li class="{{activeMenu(['produits'])}}">
+						<a href="{{path('produits')}}">Produits</a>
 					</li>
 					<li>
 						<a href="#">Services</a>
@@ -19,7 +18,8 @@
 						<a href="#">Pages</a>
 					</li>
 					<li class="{{activeMenu(['contact'])}}">
-						<a href="/contact">Contact</a>
+						<a href="{{path('contact')}}">Contact</a>
+
 					</li>
 				</ul>
 			</div>

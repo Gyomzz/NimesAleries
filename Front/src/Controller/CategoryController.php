@@ -3,35 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/category", name="app_category")
- */
+
 class CategoryController extends AbstractController
 {
-    /**
-     * @Route("/", name="category_index")
-     */
+   
     public function index(): Response
     {
-        $this->getCategory();
         return $this->render('base.html.twig', [
             'title' => 'NimesAleries | home',
-            'repo' => $this->getDoctrine()->getManager()->getRepository(Category::class),
             'carousel' => $this->forward('App\Controller\CarouselController:getCarouselOrder'),
-            'category' => $this->forward('App\Controller\CategoryController:getCategory'),
+            'category' => $this->getCategory(),
         ]);
     }
+    
 
- 
-
-    /**
-     * @Route("/all", name="all_category")
-     */
     public function getCategory(){
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)

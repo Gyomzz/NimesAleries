@@ -28,7 +28,6 @@ class CarouselController extends AbstractController
                 'No category found'
             );
         }
-        return $carousel;
     }
     public function __construct(RequestStack $requestStack)
     {
