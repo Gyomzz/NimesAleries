@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7deb1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 25, 2021 at 07:27 PM
--- Server version: 8.0.27-0ubuntu0.21.04.1
--- PHP Version: 7.4.16
+-- Generation Time: Dec 02, 2021 at 10:50 PM
+-- Server version: 8.0.27-0ubuntu0.20.04.1
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `NimesaleriesClean`
 --
-CREATE DATABASE IF NOT EXISTS `NimesaleriesClean` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `NimesaleriesClean`;
 
 -- --------------------------------------------------------
 
@@ -32,19 +30,20 @@ USE `NimesaleriesClean`;
 
 CREATE TABLE `carousel` (
   `id` int NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ordering` int DEFAULT NULL
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ordering` int DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `teaser` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `carousel`
 --
 
-INSERT INTO `carousel` (`id`, `title`, `image`, `ordering`) VALUES
-(5, 'Premiere Visite', 'premierevisite-6194e9fcb22bd.jpg', NULL),
-(6, 'Promos couleur', 'promoscouleur-6194ea14b93a6.jpg', NULL),
-(7, 'Nouveau compagnon', 'nouveaucompagnon-6194ea94bf41b.jpg', NULL);
+INSERT INTO `carousel` (`id`, `title`, `image`, `ordering`, `description`, `teaser`) VALUES
+(7, 'Nouveau compagnon', 'nouveaucompagnon-6194ea94bf41b.jpg', NULL, NULL, NULL),
+(8, 'ImageCarou', 'imagecarou-61a3642edd05c.jpg', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -54,7 +53,7 @@ INSERT INTO `carousel` (`id`, `title`, `image`, `ordering`) VALUES
 
 CREATE TABLE `category` (
   `id` int NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ordering` int DEFAULT NULL,
   `id_parent_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -98,7 +97,7 @@ INSERT INTO `category` (`id`, `name`, `ordering`, `id_parent_id`) VALUES
 --
 
 CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
@@ -131,10 +130,10 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 CREATE TABLE `orders` (
   `id` int NOT NULL,
   `id_user_id` int NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_method` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_method` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `delivery_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `validity_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1154,86 +1153,110 @@ INSERT INTO `orders` (`id`, `id_user_id`, `status`, `payment_method`, `created_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders_product`
+--
+
+CREATE TABLE `orders_product` (
+  `id` int NOT NULL,
+  `id_order_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_product_product`
+--
+
+CREATE TABLE `orders_product_product` (
+  `orders_product_id` int NOT NULL,
+  `product_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
   `id` int NOT NULL,
   `id_categorie_id` int NOT NULL,
-  `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mark` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` int DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
+  `stock` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_categorie_id`, `mark`, `name`, `description`, `price`, `active`, `image`) VALUES
-(1, 7, 'Proplan', 'Royal Canin Croquettes chien Maxi Adulte 4 kg', 'Royal Canin Maxi Adulte sont des croquettes pour les gros chiens.', 25, 1, 'royal-canin-6195558d3f8a1.jpg'),
-(2, 7, 'Premiere', 'Bonies 200g Saumon', 'Récompense entre les repas.', 3, 1, 'BoniesSaumon200g-619561f51b079.jpg'),
-(3, 7, 'Multifit', 'Croquette pour chien senior', 'MultiFit Senior est une nourriture sèche et équilibrée spécialement adaptée aux besoins des chiens plus âgés.', 10, 1, 'MultifitChienSenior-619562957c0c2.jpg'),
-(4, 7, 'Premiere', 'Os a macher', 'Produit naturel séché â l\'air, en-cas pour chien.', 6, 1, 'PremiereOsAMacher-619562db0c69e.jpg'),
-(5, 8, 'FitFun', 'Couchette Donut', 'La couchette Donut est un coussin confortable en peluche.', 10, 1, 'fitfunCouchetteDonut-6195633e8beb5.jpg'),
-(6, 8, 'Anione', 'Tapis basique', 'Tapis pour chien.', 9, 1, 'AnioneTapisBasicS-6195636d7997d.jpg'),
-(7, 8, 'Anione', 'Coussin Caisse de transport', 'Coussin pour les caisses de transport pour chien', 8, 1, 'AnioneCoussinCaisseTransport-6195639fd4ddc.jpg'),
-(8, 10, 'Anione', 'Petit Cochon', 'Jouet en latex pour chien', 4, 1, 'AnionePetitCochon-619563e7511a1.jpg'),
-(9, 10, 'Anione', 'Balle en corde', 'Balle pour chien', 7, 1, 'AnioneBalleSurCorde-619564084a43d.jpg'),
-(10, 9, 'Take Care', 'Collier de protection', 'Collier de protection pour éviter que le chien se morde.', 16, 1, 'TakeCareCollierDeProtection-6195643fe332c.jpg'),
-(11, 9, 'Take Care', 'Pince coupe griffe', 'Pince pour couper les griffes de votre chien.', 11, 1, 'PinceCoupeGriffe-6195646b7941e.jpg'),
-(12, 9, 'Take Care', 'Peigne anti-puces', 'Un peigne pour enlever les puces.', 9, 1, 'PeigneAntiPuce-6195649a76b7b.jpg'),
-(13, 12, 'Amlodipine Besylate', 'Lid - 16 Oz And 32 Oz', 'Stiffness of left knee, not elsewhere classified', 24, 0, NULL),
-(14, 23, 'Meijer', 'Wine - Ruffino Chianti', 'Other disorders of bone development and growth, left ulna', 39, 1, NULL),
-(15, 13, 'wal zan 150', 'Wine - Tribal Sauvignon', 'Problems related to unwanted pregnancy', 44, 1, NULL),
-(16, 20, 'Benazepril Hydrochloride', 'Extract - Raspberry', 'Activity, building and construction', 46, 1, NULL),
-(17, 12, 'Hydroxyzine Pamoate', 'Mudslide', 'Gestational proteinuria, third trimester', 37, 1, NULL),
-(18, 18, 'Topamax', 'Salt - Seasoned', 'Matern care for oth or susp poor fetl grth, 1st tri, oth', 8, 1, NULL),
-(19, 16, 'KERANIQUE For Women Hair Regrowth Treatment', 'Bagel - Everything Presliced', 'Oth disp fx of upper end unsp humer, subs for fx w malunion', 15, 0, NULL),
-(20, 23, 'Theophylline', 'Clam - Cherrystone', 'Toxic effect of benzene, assault, subsequent encounter', 44, 1, NULL),
-(21, 20, 'Gabapentin', 'Ocean Spray - Kiwi Strawberry', 'Subluxation of tarsometatarsal joint of unsp foot, sequela', 18, 1, NULL),
-(22, 8, 'Oxaliplatin', 'Pasta - Penne, Rigate, Dry', 'Burn first degree of unsp single finger except thumb, sqla', 40, 1, NULL),
-(23, 8, 'SOMAVERT', 'Cheese - Cheddar, Medium', 'Aqueous misdirection, unspecified eye', 11, 1, NULL),
-(24, 25, 'Ativan', 'Cheese - Comte', 'Animl-ridr or occ of anml-drn veh inj in clsn w nonmtr veh', 40, 1, NULL),
-(25, 8, 'Arsenicum Cerebrum', 'Pork - Ham, Virginia', 'Sltr-haris Type I physl fx upr end unsp fibula, 7thD', 4, 0, NULL),
-(26, 18, 'Care', 'Tomato - Peeled Italian Canned', 'Congenital shortening of lower limb', 48, 0, NULL),
-(27, 26, 'RESILIENCE LIFT', 'Cookie - Oatmeal', 'Subluxation of left scapula, sequela', 31, 0, NULL),
-(28, 17, 'AMOXICILLIN', 'Flour - All Purpose', 'Abscess of bursa, left ankle and foot', 35, 1, NULL),
-(29, 27, 'Quetiapine Fumarate', 'Tomato - Peeled Italian Canned', 'Burn of unspecified degree of unspecified shoulder, sequela', 26, 0, NULL),
-(30, 21, 'LBEL EFFET PARFAIT Spots Reducing Effect Foundation SPF 18 - OBSCURE 8', 'Iced Tea - Lemon, 340ml', 'Subluxation of tarsal joint of unspecified foot, sequela', 37, 0, NULL),
-(32, 17, 'TERCONAZOLE', 'Bread - Multigrain Oval', 'Inj extensor musc/fasc/tend l idx fngr at wrs/hnd lv, subs', 22, 1, NULL),
-(33, 12, 'Haloperidol', 'Melon - Honey Dew', 'Open angle with borderline findings, low risk, unsp eye', 38, 1, NULL),
-(34, 26, 'Striant', 'Cocktail Napkin Blue', 'Oth lack of expected normal physiol development in childhood', 15, 1, NULL),
-(35, 9, 'Astragalus e rad. 1%', 'Wine - Shiraz Wolf Blass Premium', 'Foreign body in penis, sequela', 39, 1, NULL),
-(36, 21, 'Cold-EEZE', 'Ginger - Pickled', 'Postproc hemorrhage of an endo sys org following a procedure', 45, 1, NULL),
-(37, 12, 'Haran 40 (Number 78)', 'Flour - Masa De Harina Mexican', 'Person outsd hv veh inj in clsn w nonmtr veh in traf, sqla', 27, 0, NULL),
-(38, 20, 'Lisinopril', 'Salmon Steak - Cohoe 8 Oz', 'Poisoning by unspecified general anesthetics, undetermined', 29, 0, NULL),
-(39, 20, 'Guaifenesin', 'Plaintain', 'Breakdown of balloon (counterpulsation) device, sequela', 33, 0, NULL),
-(40, 14, 'Amlodipine Besylate', 'Wine - Fat Bastard Merlot', 'Unspecified spacecraft accident injuring occupant, sequela', 17, 1, NULL),
-(41, 21, 'Nicorette', 'Wine - Sogrape Mateus Rose', 'Dorsalgia', 45, 1, NULL),
-(42, 19, 'Warfarin Sodium', 'Muffin Hinge 117n', 'Sex chromosome abnormality, female phenotype, unspecified', 37, 0, NULL),
-(43, 17, 'Black Birch', 'Sugar - Monocystal / Rock', 'Inj ulnar artery at wrist and hand level of left arm, subs', 21, 1, NULL),
-(44, 18, 'Lexapro', 'Pork - Sausage, Medium', 'Unsp inj extn musc/fasc/tend r idx fngr at wrs/hnd lv, sqla', 13, 1, NULL),
-(45, 7, 'Cepacol', 'Wine - Mas Chicet Rose, Vintage', 'Doubling of uterus w doubling of cervix and vagina w/o obst', 3, 1, NULL),
-(46, 26, 'Rabeprazole Sodium', 'Pork - Ground', 'Methylenetetrahydrofolate reductase deficiency', 36, 0, NULL),
-(47, 18, 'Olanzapine', 'Apple - Delicious, Red', 'Puncture wound w/o foreign body of right ear, subs encntr', 33, 0, NULL),
-(48, 11, 'Daytime', 'Cheese - Sheep Milk', 'Collapsed vertebra, NEC, lumbosacral region, init', 10, 1, NULL),
-(49, 23, 'JUNIPERUS ASHEI POLLEN', 'Kellogs Special K Cereal', 'Staphylococcal arthritis, ankle and foot', 6, 1, NULL),
-(50, 16, 'Berry Hand Sanitizer with vitamin E and aloe', 'Trout - Hot Smkd, Dbl Fillet', 'Other foreign object in trachea causing other injury', 25, 0, NULL),
-(51, 14, 'Meperidine Hydrochloride', 'Cheese - Cheddar, Mild', 'Oth abnormal findings in specimens from oth org/tiss', 13, 0, NULL),
-(52, 18, 'Prednisolone Acetate', 'Cheese - Brie, Cups 125g', 'War operation involving other effects of nuclear weapons', 46, 1, NULL),
-(53, 20, 'Topcare Cold Head Congestion', 'Hot Choc Vending', 'Displ transverse fx shaft of unsp rad, 7thR', 44, 0, NULL),
-(54, 24, 'Lidocaine Hydrochloride and Epinephrine', 'Cake - Miini Cheesecake Cherry', 'Fall same lev from slip/trip w strike against oth object', 36, 1, NULL),
-(55, 12, 'Trimethobenzamide Hydrochloride', 'Juice - Apple 284ml', 'Oth comp fol infusion, transfuse and theraputc injection', 18, 1, NULL),
-(56, 24, 'Ciprofloxacin', 'Apples - Spartan', 'Pasngr in pk-up/van injured in nonclsn trnsp acc nontraf', 21, 1, NULL),
-(57, 9, 'Flumazenil', 'Beer - Maudite', 'Ulcerative (chronic) proctitis with unsp complications', 22, 1, NULL),
-(58, 23, 'Namenda', 'Chips - Assorted', 'Merkel cell carcinoma of right ear and external auric canal', 3, 0, NULL),
-(59, 26, 'Clinpro 5000', 'Lamb - Leg, Boneless', 'Monoarthritis, not elsewhere classified, shoulder', 12, 0, NULL),
-(60, 21, 'Phenazopyridine Hydrochloride', 'Pepper - Green Thai', 'Displaced bimalleolar fracture of unspecified lower leg', 12, 0, NULL),
-(61, 23, 'Tosowoong Mens Booster Repair Skin', 'Shrimp - Baby, Cold Water', 'Disp fx of prox phalanx of r idx fngr, 7thP', 5, 1, NULL),
-(63, 17, 'Cyclobenzaprine Hydrochloride', 'Chocolate - White', 'Strain of unspecified Achilles tendon, sequela', 19, 1, NULL);
+INSERT INTO `product` (`id`, `id_categorie_id`, `mark`, `name`, `description`, `price`, `active`, `image`, `created_at`, `stock`) VALUES
+(1, 7, 'Proplan', 'Royal Canin Croquettes chien Maxi Adulte 4 kg', 'Royal Canin Maxi Adulte sont des croquettes pour les gros chiens.', 25, 1, 'royal-canin-6195558d3f8a1.jpg', '2021-12-06', NULL),
+(2, 7, 'Premiere', 'Bonies 200g Saumon', 'Récompense entre les repas.', 3, 1, 'BoniesSaumon200g-619561f51b079.jpg', '2021-07-11', 50),
+(3, 7, 'Multifit', 'Croquette pour chien senior', 'MultiFit Senior est une nourriture sèche et équilibrée spécialement adaptée aux besoins des chiens plus âgés.', 10, 1, 'MultifitChienSenior-619562957c0c2.jpg', '2021-02-13', NULL),
+(4, 7, 'Premiere', 'Os a macher', 'Produit naturel séché â l\'air, en-cas pour chien.', 6, 1, 'PremiereOsAMacher-619562db0c69e.jpg', '2021-01-22', NULL),
+(5, 8, 'FitFun', 'Couchette Donut', 'La couchette Donut est un coussin confortable en peluche.', 10, 1, 'fitfunCouchetteDonut-6195633e8beb5.jpg', '2021-09-26', NULL),
+(6, 8, 'Anione', 'Tapis basique', 'Tapis pour chien.', 9, 1, 'AnioneTapisBasicS-6195636d7997d.jpg', '2021-05-19', NULL),
+(7, 8, 'Anione', 'Coussin Caisse de transport', 'Coussin pour les caisses de transport pour chien', 8, 1, 'AnioneCoussinCaisseTransport-6195639fd4ddc.jpg', '2021-02-17', NULL),
+(8, 10, 'Anione', 'Petit Cochon', 'Jouet en latex pour chien', 4, 1, 'AnionePetitCochon-619563e7511a1.jpg', '2021-10-20', NULL),
+(9, 10, 'Anione', 'Balle en corde', 'Balle pour chien', 7, 1, 'AnioneBalleSurCorde-619564084a43d.jpg', '2021-11-20', NULL),
+(10, 9, 'Take Care', 'Collier de protection', 'Collier de protection pour éviter que le chien se morde.', 16, 1, 'TakeCareCollierDeProtection-6195643fe332c.jpg', NULL, NULL),
+(11, 9, 'Take Care', 'Pince coupe griffe', 'Pince pour couper les griffes de votre chien.', 11, 1, 'PinceCoupeGriffe-6195646b7941e.jpg', '2021-02-06', NULL),
+(12, 9, 'Take Care', 'Peigne anti-puces', 'Un peigne pour enlever les puces.', 9, 1, 'PeigneAntiPuce-6195649a76b7b.jpg', '2021-08-06', NULL),
+(13, 12, 'Amlodipine Besylate', 'Lid - 16 Oz And 32 Oz', 'Stiffness of left knee, not elsewhere classified', 24, 0, NULL, '2021-03-11', NULL),
+(14, 23, 'Meijer', 'Wine - Ruffino Chianti', 'Other disorders of bone development and growth, left ulna', 39, 1, NULL, '2021-02-01', NULL),
+(15, 13, 'wal zan 150', 'Wine - Tribal Sauvignon', 'Problems related to unwanted pregnancy', 44, 1, NULL, '2020-12-18', NULL),
+(16, 20, 'Benazepril Hydrochloride', 'Extract - Raspberry', 'Activity, building and construction', 46, 1, NULL, '2021-04-20', NULL),
+(17, 12, 'Hydroxyzine Pamoate', 'Mudslide', 'Gestational proteinuria, third trimester', 37, 1, NULL, '2021-08-19', NULL),
+(18, 18, 'Topamax', 'Salt - Seasoned', 'Matern care for oth or susp poor fetl grth, 1st tri, oth', 8, 1, NULL, '2021-01-23', NULL),
+(19, 16, 'KERANIQUE For Women Hair Regrowth Treatment', 'Bagel - Everything Presliced', 'Oth disp fx of upper end unsp humer, subs for fx w malunion', 15, 0, NULL, '2020-12-25', NULL),
+(20, 23, 'Theophylline', 'Clam - Cherrystone', 'Toxic effect of benzene, assault, subsequent encounter', 44, 1, NULL, '2021-06-15', NULL),
+(21, 20, 'Gabapentin', 'Ocean Spray - Kiwi Strawberry', 'Subluxation of tarsometatarsal joint of unsp foot, sequela', 18, 1, NULL, '2021-09-02', NULL),
+(22, 8, 'Oxaliplatin', 'Pasta - Penne, Rigate, Dry', 'Burn first degree of unsp single finger except thumb, sqla', 40, 1, NULL, NULL, NULL),
+(23, 8, 'SOMAVERT', 'Cheese - Cheddar, Medium', 'Aqueous misdirection, unspecified eye', 11, 1, NULL, '2021-05-28', NULL),
+(24, 25, 'Ativan', 'Cheese - Comte', 'Animl-ridr or occ of anml-drn veh inj in clsn w nonmtr veh', 40, 1, NULL, '2021-04-07', NULL),
+(25, 8, 'Arsenicum Cerebrum', 'Pork - Ham, Virginia', 'Sltr-haris Type I physl fx upr end unsp fibula, 7thD', 4, 0, NULL, '2021-05-26', NULL),
+(26, 18, 'Care', 'Tomato - Peeled Italian Canned', 'Congenital shortening of lower limb', 48, 0, NULL, '2021-09-03', NULL),
+(27, 26, 'RESILIENCE LIFT', 'Cookie - Oatmeal', 'Subluxation of left scapula, sequela', 31, 0, NULL, '2021-06-04', NULL),
+(28, 17, 'AMOXICILLIN', 'Flour - All Purpose', 'Abscess of bursa, left ankle and foot', 35, 1, NULL, '2021-04-24', NULL),
+(29, 27, 'Quetiapine Fumarate', 'Tomato - Peeled Italian Canned', 'Burn of unspecified degree of unspecified shoulder, sequela', 26, 0, NULL, '2021-08-19', NULL),
+(30, 21, 'LBEL EFFET PARFAIT', 'Iced Tea - Lemon, 340ml', 'Subluxation of tarsal joint of unspecified foot, sequela', 37, 0, NULL, '2021-05-31', NULL),
+(32, 17, 'TERCONAZOLE', 'Bread - Multigrain Oval', 'Inj extensor musc/fasc/tend l idx fngr at wrs/hnd lv, subs', 22, 1, NULL, NULL, NULL),
+(33, 12, 'Haloperidol', 'Melon - Honey Dew', 'Open angle with borderline findings, low risk, unsp eye', 38, 1, NULL, '2021-07-13', NULL),
+(34, 26, 'Striant', 'Cocktail Napkin Blue', 'Oth lack of expected normal physiol development in childhood', 15, 1, NULL, '2021-03-28', NULL),
+(35, 9, 'Astragalus e rad. 1%', 'Wine - Shiraz Wolf Blass Premium', 'Foreign body in penis, sequela', 39, 1, NULL, '2021-09-14', NULL),
+(36, 21, 'Cold-EEZE', 'Ginger - Pickled', 'Postproc hemorrhage of an endo sys org following a procedure', 45, 1, NULL, NULL, NULL),
+(37, 12, 'Haran 40 (Number 78)', 'Flour - Masa De Harina Mexican', 'Person outsd hv veh inj in clsn w nonmtr veh in traf, sqla', 27, 0, NULL, '2021-05-08', NULL),
+(38, 20, 'Lisinopril', 'Salmon Steak - Cohoe 8 Oz', 'Poisoning by unspecified general anesthetics, undetermined', 29, 0, NULL, '2021-03-31', NULL),
+(39, 20, 'Guaifenesin', 'Plaintain', 'Breakdown of balloon (counterpulsation) device, sequela', 33, 0, NULL, '2021-11-05', NULL),
+(40, 14, 'Amlodipine Besylate', 'Wine - Fat Bastard Merlot', 'Unspecified spacecraft accident injuring occupant, sequela', 17, 1, NULL, '2021-10-17', NULL),
+(41, 21, 'Nicorette', 'Wine - Sogrape Mateus Rose', 'Dorsalgia', 45, 1, NULL, NULL, NULL),
+(42, 19, 'Warfarin Sodium', 'Muffin Hinge 117n', 'Sex chromosome abnormality, female phenotype, unspecified', 37, 0, NULL, '2021-08-19', NULL),
+(43, 17, 'Black Birch', 'Sugar - Monocystal / Rock', 'Inj ulnar artery at wrist and hand level of left arm, subs', 21, 1, NULL, '2021-07-05', NULL),
+(44, 18, 'Lexapro', 'Pork - Sausage, Medium', 'Unsp inj extn musc/fasc/tend r idx fngr at wrs/hnd lv, sqla', 13, 1, NULL, '2021-09-24', NULL),
+(45, 7, 'Cepacol', 'Wine - Mas Chicet Rose, Vintage', 'Doubling of uterus w doubling of cervix and vagina w/o obst', 3, 1, NULL, '2021-04-22', NULL),
+(46, 26, 'Rabeprazole Sodium', 'Pork - Ground', 'Methylenetetrahydrofolate reductase deficiency', 36, 0, NULL, '2021-05-24', NULL),
+(47, 18, 'Olanzapine', 'Apple - Delicious, Red', 'Puncture wound w/o foreign body of right ear, subs encntr', 33, 0, NULL, NULL, NULL),
+(48, 11, 'Daytime', 'Cheese - Sheep Milk', 'Collapsed vertebra, NEC, lumbosacral region, init', 10, 1, NULL, '2021-07-19', NULL),
+(49, 23, 'JUNIPERUS ASHEI POLLEN', 'Kellogs Special K Cereal', 'Staphylococcal arthritis, ankle and foot', 6, 1, NULL, '2021-11-13', NULL),
+(50, 16, 'Berry Hand Sanitizer with vitamin E and aloe', 'Trout - Hot Smkd, Dbl Fillet', 'Other foreign object in trachea causing other injury', 25, 0, NULL, '2021-04-16', NULL),
+(51, 14, 'Meperidine Hydrochloride', 'Cheese - Cheddar, Mild', 'Oth abnormal findings in specimens from oth org/tiss', 13, 0, NULL, '2021-01-26', NULL),
+(52, 18, 'Prednisolone Acetate', 'Cheese - Brie, Cups 125g', 'War operation involving other effects of nuclear weapons', 46, 1, NULL, '2020-12-11', NULL),
+(53, 20, 'Topcare Cold Head Congestion', 'Hot Choc Vending', 'Displ transverse fx shaft of unsp rad, 7thR', 44, 0, NULL, '2021-03-16', NULL),
+(54, 24, 'Lidocaine Hydrochloride and Epinephrine', 'Cake - Miini Cheesecake Cherry', 'Fall same lev from slip/trip w strike against oth object', 36, 1, NULL, NULL, NULL),
+(55, 12, 'Trimethobenzamide Hydrochloride', 'Juice - Apple 284ml', 'Oth comp fol infusion, transfuse and theraputc injection', 18, 1, NULL, '2021-03-13', NULL),
+(56, 24, 'Ciprofloxacin', 'Apples - Spartan', 'Pasngr in pk-up/van injured in nonclsn trnsp acc nontraf', 21, 1, NULL, '2021-01-02', NULL),
+(57, 9, 'Flumazenil', 'Beer - Maudite', 'Ulcerative (chronic) proctitis with unsp complications', 22, 1, NULL, '2021-09-28', NULL),
+(58, 23, 'Namenda', 'Chips - Assorted', 'Merkel cell carcinoma of right ear and external auric canal', 3, 0, NULL, NULL, NULL),
+(59, 26, 'Clinpro 5000', 'Lamb - Leg, Boneless', 'Monoarthritis, not elsewhere classified, shoulder', 12, 0, NULL, '2021-07-26', NULL),
+(60, 21, 'Phenazopyridine Hydrochloride', 'Pepper - Green Thai', 'Displaced bimalleolar fracture of unspecified lower leg', 12, 0, NULL, '2021-09-13', NULL),
+(61, 23, 'Tosowoong Mens Booster Repair Skin', 'Shrimp - Baby, Cold Water', 'Disp fx of prox phalanx of r idx fngr, 7thP', 5, 1, NULL, '2021-03-25', NULL),
+(63, 17, 'Cyclobenzaprine Hydrochloride', 'Chocolate - White', 'Strain of unspecified Achilles tendon, sequela', 19, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1314,8 +1337,8 @@ INSERT INTO `product_orders` (`product_id`, `orders_id`) VALUES
 CREATE TABLE `reset_password_request` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
-  `selector` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hashed_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `selector` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hashed_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `requested_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1336,14 +1359,14 @@ INSERT INTO `reset_password_request` (`id`, `user_id`, `selector`, `hashed_token
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `roles` json DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birthday` date DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gender` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1489,6 +1512,21 @@ ALTER TABLE `orders`
   ADD KEY `IDX_E52FFDEE79F37AE5` (`id_user_id`);
 
 --
+-- Indexes for table `orders_product`
+--
+ALTER TABLE `orders_product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_223F76D6DD4481AD` (`id_order_id`);
+
+--
+-- Indexes for table `orders_product_product`
+--
+ALTER TABLE `orders_product_product`
+  ADD PRIMARY KEY (`orders_product_id`,`product_id`),
+  ADD KEY `IDX_A6E5B64620467FDD` (`orders_product_id`),
+  ADD KEY `IDX_A6E5B6464584665A` (`product_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -1525,7 +1563,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1538,6 +1576,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `orders`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
+
+--
+-- AUTO_INCREMENT for table `orders_product`
+--
+ALTER TABLE `orders_product`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -1572,6 +1616,19 @@ ALTER TABLE `category`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `FK_E52FFDEE79F37AE5` FOREIGN KEY (`id_user_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `orders_product`
+--
+ALTER TABLE `orders_product`
+  ADD CONSTRAINT `FK_223F76D6DD4481AD` FOREIGN KEY (`id_order_id`) REFERENCES `orders` (`id`);
+
+--
+-- Constraints for table `orders_product_product`
+--
+ALTER TABLE `orders_product_product`
+  ADD CONSTRAINT `FK_A6E5B64620467FDD` FOREIGN KEY (`orders_product_id`) REFERENCES `orders_product` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_A6E5B6464584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product`
