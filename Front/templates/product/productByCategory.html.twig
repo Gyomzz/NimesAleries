@@ -33,7 +33,7 @@
 		<div class="col-lg-4 col-md-6 col-12">
 			<div class="single-product">
 				<div class="product-img">
-					<a href="">
+					<a href="{{ path('produit_show', {'name': product.name, 'category' : category.name}) }}">
 						{% if product.image %}
 							<img class="default-img" src="{{ asset('uploads/' ~ product.image) }}" alt="{{ product.name }}">
 
@@ -77,5 +77,6 @@
 				</div>
 			</div>
 		</div>
+    {% include "product/modal.html.twig" with  {'product' : product|e} %}
 	{% endfor %}
 </div>
