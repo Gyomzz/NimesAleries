@@ -16,21 +16,37 @@
 						<div class="single-widget category">
 							<h3 class="title">Categories</h3>
 							<ul class="categor-list">
-								{% for category in categories %}
-									<li class="dropdown">
-										<ul class="dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-											{{category.name}}
-										</ul>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-											{% for child in categoryRepo.getChild(category) %}
-												<li>
-													<a href="{{ path('produits_category', {'category' : child.name})}}" class="dropdown-item" type="button">{{child.name}}</a>
-												</li>
-											{% endfor %}
-
-										</ul>
+								{% if category %}
+									{% set url = app.request.attributes.get('_route_params') %}
+									{% if url|length > 1 %}
+										<li>
+											<a href="/produits/{{url['category']}}" class="font-weight-bold">{{url['category']}}</a>
+										</li>
+									{% else %}
+										<li>
+											<a href="{{path('produits')}}">
+												<span>retour</span>
+											</a>
+										</li>
+									{% endif %}
+									<li class="pl-2">
+										<span>{{category[0].name}}</span>
 									</li>
-								{% endfor %}
+									{% for child in categoryRepo.getChild(category) %}
+										{% set cat = category[0] %}
+										<li class="pl-4">
+											<a href="{{ path('produits_category_child', {'category' : cat.name, 'child' : child.name })}}">{{ child.name }}</a>
+										</li>
+									{% endfor %}
+								{% else %}
+									{% for category in categories %}
+										<li>
+											<a href="{{ path('produits_category', {'category' : category.name })}}">{{ category.name }}</a>
+										</li>
+									{% endfor %}
+								{% endif %}
+
+
 							</ul>
 						</div>
 						<!--/ End Single Widget -->
@@ -183,11 +199,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-8 col-12">
-					{% if category %}
-						{% include "product/productByCategory.html.twig" %}
-					{% else %}
-						{% include "product/productByDefault.html.twig" %}
-					{% endif %}
+					{% include "product/productByCategory.html.twig" with {'category' : category } %}
 				</div>
 			</div>
 		</div>

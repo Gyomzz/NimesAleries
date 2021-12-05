@@ -24,11 +24,10 @@ class ProductController extends AbstractController
      /**
      * @Route("/", name="produits")
      */
-    public function index(ProductRepository $productRepository): Response
+    public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('product/index.html.twig', [
             'title' => 'Liste des produits',
-            'products' => $productRepository->findAll(),
             'category' => false,
             'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class)
         ]);
@@ -46,9 +45,21 @@ class ProductController extends AbstractController
         ]);
     }
     /**
+     * @Route("/{category}/{child}", name="produits_category_child")
+     */
+    public function childCategory(CategoryRepository $categoryRepository, $child): Response
+    {
+        return $this->render('product/index.html.twig', [
+            'title' => 'Liste des produits',
+            'category' => $categoryRepository->findBy(array('name' => $child)),
+            'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class)
+        ]);
+    }
+    /**
      * @param string $category
+     * @param string $child
      * @param string $name
-     * @Route("/{category}/{name}", name="produit_show")
+     * @Route("/{category}/{child}/{name}", name="produit_show")
      */
     public function show(Product $product): Response
     {
