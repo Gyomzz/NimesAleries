@@ -74,7 +74,7 @@ class ProductType extends AbstractType
                 'label' => false
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Valider la modification'
+                'label' => 'Valider'
             ])
         ;
     }
