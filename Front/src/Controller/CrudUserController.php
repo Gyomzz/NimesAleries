@@ -64,6 +64,7 @@ class CrudUserController extends AbstractController
     {
         return $this->render('crud_user/show.html.twig', [
             'user' => $user,
+            'title' => 'Informations utilisateur ' . $user->getId()
         ]);
     }
 
