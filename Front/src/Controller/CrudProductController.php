@@ -67,7 +67,7 @@ class CrudProductController extends AbstractController
     {
         return $this->render('crud_product/show.html.twig', [
             'product' => $product,
-            'title' => 'Details du produit',
+            'title' => 'Details du produit '. $product->getName(),
         ]);
     }
 
@@ -94,7 +94,7 @@ class CrudProductController extends AbstractController
         return $this->renderForm('crud_product/edit.html.twig', [
             'product' => $product,
             'form' => $form,
-            'title' => 'Modification produit',
+            'title' => 'Modification produit ' . $product->getName(),
         ]);
     }
 

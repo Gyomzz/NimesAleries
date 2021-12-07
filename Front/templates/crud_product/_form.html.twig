@@ -1,4 +1,74 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+<div class="row">
+	<div class="col-lg-3 col-6">
+		<label>
+			Nom du produit
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.name, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Marque du produit
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.mark, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Prix du produit
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.price, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Actif 
+			<span style="color: #ff2c18;">* :</span>
+		</label>
+		{{ form_row(form.active, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-12">
+		<label>
+			Description du produit
+			<span style="color: #ff2c18;">*</span>
+		</label>
+
+		{{ form_row(form.description, {'attr': {'class': 'form-group message'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Disponible le 
+			<span style="color: #ff2c18;">* :</span>
+		</label>
+		{{ form_row(form.created_at, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Quantité en stock 
+			<span style="color: #ff2c18;">* :</span>
+		</label>
+		{{ form_row(form.stock, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Image du produit (Jpeg, Png)
+			<span style="color: #ff2c18;">* :</span>
+		</label>
+		{{ form_row(form.picture, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Catégorie 
+			<span style="color: #ff2c18;">* :</span>
+		</label>
+		{{ form_row(form.Id_categorie, {'attr': {'class': 'form-group'}}) }}
+	</div>
+
+	<div class="col-12">
+		<div class="form-group button">
+			{{ form_row(form.save, {'attr': {'class': 'form-control btn btn-primary py-3 px-5'}}) }}
+		</div>
+	</div>
+</div>
 {{ form_end(form) }}
