@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Carousel{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-    <h1>Create new Carousel</h1>
+<div class="container my-5">
+
+    <h1>Ajouter une image au carousel</h1>
 
     {{ include('crud_carousel/_form.html.twig') }}
 
-    <a href="{{ path('crud_carousel_index') }}">back to list</a>
+    <a href="{{ path('crud_carousel_index') }}">Retourner à la liste</a>
+    </div>
 {% endblock %}

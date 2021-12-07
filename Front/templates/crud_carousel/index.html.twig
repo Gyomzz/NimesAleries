@@ -1,45 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>Carousel index</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Title</th>
-				<th>Image</th>
-				<th>Ordering</th>
-				<th>Description</th>
-				<th>Teaser</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for carousel in carousels %}
+	<div class="container mt-3">
+		<h1>Gestion du carousel</h1>
+		<a href="{{ path('crud_carousel_new') }}">Ajouter une image au carousel</a>
+		<table class="table">
+			<thead class="sticky-top text-white" style=" background: #333; top: 50px;">
 				<tr>
-					<td>{{ carousel.id }}</td>
-					<td>{{ carousel.Title }}</td>
-					<td>
-						<a href="{{ asset('uploads/' ~ carousel.image) }}">Voir l'image</a>
-					</td>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Image</th>
+					<th>Ordering</th>
+					<th>Description</th>
+					<th>Teaser</th>
+					<th class="text-center">actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for carousel in carousels %}
+					<tr>
+						<td>{{ carousel.id }}</td>
+						<td>{{ carousel.Title }}</td>
+						<td>
+							<a href="{{ asset('uploads/' ~ carousel.image) }}">Voir l'image</a>
+						</td>
 
-					<td>{{ carousel.ordering }}</td>
-					<td>{{ carousel.description }}</td>
-					<td>{{ carousel.teaser }}</td>
-					<td class="d-flex justify-content-between">
-						<a href="{{ path('crud_carousel_show', {'id': carousel.id}) }}">show</a>
-						<a href="{{ path('crud_carousel_edit', {'id': carousel.id}) }}">edit</a>
-						{{ include('crud_carousel/_delete_form.html.twig') }}
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
+						<td>{{ carousel.ordering }}</td>
+						<td>{{ carousel.description }}</td>
+						<td>{{ carousel.teaser }}</td>
+						<td class="d-flex flex-column">
+							<a href="{{ path('crud_carousel_show', {'id': carousel.id}) }}" class="btn">Voir</a>
+							<a href="{{ path('crud_carousel_edit', {'id': carousel.id}) }}" class="btn">Editer</a>
+							{{ include('crud_carousel/_delete_form.html.twig') }}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				</tbody>
 			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('crud_carousel_new') }}">Create new</a>
+		</table>
+	</div>
 {% endblock %}

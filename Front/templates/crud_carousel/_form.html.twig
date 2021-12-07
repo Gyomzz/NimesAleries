@@ -1,4 +1,45 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+<div class="row">
+	<div class="col-lg-3 col-6">
+		<label>
+			Titre
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.Title, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Accroche
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.teaser, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Ordre dans le carousel
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.ordering, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-lg-3 col-6">
+		<label>
+			Image (Jpeg, Png)
+			<span style="color: #ff2c18;">* :</span>
+		</label>
+		{{ form_row(form.picture, {'attr': {'class': 'form-group'}}) }}
+	</div>
+	<div class="col-12">
+		<label>
+			Description de l'image
+			<span style="color: #ff2c18;">*</span>
+		</label>
+
+		{{ form_row(form.description, {'attr': {'class': 'form-group message'}}) }}
+	</div>
+	<div class="col-6 mx-auto">
+		<div class="form-group button">
+			{{ form_row(form.save, {'attr': {'class': 'form-control btn btn-primary py-3 px-5'}}) }}
+		</div>
+	</div>
+</div>
 {{ form_end(form) }}
