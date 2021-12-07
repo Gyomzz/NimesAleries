@@ -1,8 +1,30 @@
-{{ form_start(form) }}
-    {{ form_row(form.name, {'attr' : {'class': 'form-control my-3'}}) }}
-    {{ form_row(form.ordering, {'attr' : {'class': 'form-control my-3'}}) }}
-    {{ form_row(form.id_parent, {'attr' : {'class': 'form-control my-3'}}) }}
-
-
-<button class="btn" style="display:inline;margin-top:15px;">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+<div class="row">
+	<div class="col-lg-4 col-12">
+		<label>
+			Nom de la catégorie
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.name, {'attr' : {'class': 'form-control my-3'}}) }}
+	</div>
+	<div class="col-lg-4 col-12">
+		<label>
+			Ordre d'affichage
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.ordering, {'attr' : {'class': 'form-control my-3'}}) }}
+	</div>
+	<div class="col-lg-4 col-12">
+		<label>
+			Catégorie parente (optionnel)
+			<span style="color: #ff2c18;">*</span>
+		</label>
+		{{ form_row(form.id_parent, {'attr' : {'class': 'form-control my-3'}}) }}
+	</div>
+	<div class="col-6 mx-auto">
+		<div class="form-group button">
+			{{ form_row(form.save, {'attr': {'class': 'form-control btn btn-primary py-3 px-5'}}) }}
+		</div>
+	</div>
+</div>
 {{ form_end(form) }}
