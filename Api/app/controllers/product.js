@@ -1,7 +1,5 @@
 const connection = require('../../server.js').connection;
 
-connection.connect();
-
 const execQuery = async (query) => {
     return new Promise((resolve, reject) => {
         connection.query(query,

@@ -12,7 +12,11 @@ const config = {
     database: process.env.database
 })}
 
+config.connection.connect();
+
+
 module.exports = config;
+
 require('./app/routes/request')(app);
 
 app.use((req, res, next) => {
