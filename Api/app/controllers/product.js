@@ -1,6 +1,17 @@
 const connection = require('../../server.js').connection;
 
 connection.connect();
+
+const execQuery = async (query) => {
+    return new Promise((resolve, reject) => {
+        connection.query(query,
+        function (err, results, fields) {
+            if (err) reject(err)
+            else resolve(results)
+        });
+    })
+}
+
 const getIdListOfBestProducts = async () => {
     return await execQuery(`SELECT DISTINCT COUNT(product_id) AS bestProduct, product_id 
     FROM product_orders 
@@ -27,15 +38,7 @@ const getProductsById = async (idsPacket) => {
     return products;
 }
 
-const execQuery = async (query) => {
-    return new Promise((resolve, reject) => {
-        connection.query(query,
-        function (err, results, fields) {
-            if (err) reject(err)
-            else resolve(results)
-        });
-    })
-}
+
 exports.getBestProducts = async (req, res) => {
     res.send(
         JSON.stringify(

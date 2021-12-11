@@ -1,11 +1,16 @@
 const express = require('express');
-const productRoutes = express.Router();
+const requestRoutes = express.Router();
 const ProductController = require('../controllers/product');
+const OrderController = require('../controllers/order');
 
 module.exports = (app) => {
 
-    productRoutes.get('/bestProducts', ProductController.getBestProducts);
+    requestRoutes.get('/bestProducts', ProductController.getBestProducts);
 
-    app.use('/', productRoutes);
+    requestRoutes.get('/abandonedCart', OrderController.getPercentageAbandonedCart);
+
+    requestRoutes.get('/convertedCart', OrderController.getPercentageConvertedCart);
+
+    app.use('/', requestRoutes);
     
 }
