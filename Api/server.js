@@ -28,7 +28,6 @@ const execQuery = async (query) => {
     })
 }
 
-module.exports = config;
 module.exports = execQuery;
 
 require('./app/routes/request')(app);

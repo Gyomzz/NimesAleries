@@ -1,4 +1,3 @@
-const connection = require('../../server.js').connection;
 const execQuery = require('../../server.js');
 
 
