@@ -1,7 +1,8 @@
-const env = require('dotenv').config();
+require('dotenv').config();
 
 const PORT = process.env.SERVER_PORT;
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mysql = require('mysql');
 const config = {
@@ -11,6 +12,8 @@ const config = {
     password: process.env.password,
     database: process.env.database
 })}
+
+app.use(cors());
 
 config.connection.connect();
 
