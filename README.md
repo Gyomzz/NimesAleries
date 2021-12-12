@@ -1,87 +1,87 @@
 # NimesAleries
-L’objectif principal du projet est de pouvoir proposer une plateforme fonctionnelle mettant en évidence les compétences acquises lors de ma formation sur les technologies suivantes : 
-(Html/CSS , Javascript, PHP, Angular, Symfony, Wordpress)
+The main objective of the project is to be able to offer a functional platform highlighting the skills acquired during my training on the following technologies:
+(Html ​​/ CSS, Javascript, PHP, Angular, Symfony, Wordpress)
 
-Page accueil
+Home page
 
-La page d’accueil reprendra les grands classiques du ecom :
-- Un header avec les catégories du site
-- Une bannière ou un carrousel de bannières 
-- Un texte sur l’entreprise
-- Une section avec les produits phares
-- Une section de réassurance client (témoignages, logos type livraison 24h, paiement 
-sécurisé, remboursement 30jours)
+The home page will include the great classics of ecom:
+- A header with the categories of the site
+- A banner or a banner carousel
+- A text about the company
+- A section with the flagship products
+- A customer reinsurance section (testimonials, 24-hour delivery type logos, payment
+secure, 30 day refund)
 
 
-Page produit
+Product page
 
-La page reprendra le minimum :
-- Titre du produit
-- Description du produit
-- Prix du produit
-- Photos du produit
+The page will resume the minimum:
+- Product title
+- Product Description
+- Product price
+- Product photos
 
-Vue « Gérer mon compte »
+"Manage my account" view
 
-La vue « Gérer mon compte » permet à un client connecté de modifier ses informations 
-personnelles :
-- Genre
-- Nom
-- Prénom
-- Adresse mail
-- Mot de passe
-- Date de naissance
-- Adresse complète
+The "Manage my account" view allows a connected customer to modify their information
+personal:
+- Gender
+- Last name
+- First name
+- Mail address
+- Password
+- Date of Birth
+- Full address
 
-Page dashboard
+Dashboard page
 
-L’application de dashboard aura sur sa vue principale l’affichage d’informations et de 
-graphiques important, toutes les informations seront récupérées par rapport à une plage de 
-dates sélectionnées :
-- Montant Total des ventes
-- Nb de commandes
-- Nb de paniers
-- Valeur d’un panier moyen
-- Nb de nouveaux clients
-- % de récurrence de commandes clients (un client déjà inscrit à re-commander, rapport 
-entre le nb de commandes avec nouveaux clients sur la plage sélectionnée et le nb de 
-commandes avec clients existants)
-- % de paniers abandonnées (% de paniers qui n’ont pas été convertis en commandes)
-- Nb de visites
-- % de conversion paniers (% entre le nb de visites et le nombre de paniers créés)
-- % de conversion commandes (% entre le nb de paniers et le nombre de commandes 
-créées)
-- Total de produits vendus triés par ordre décroissant (Le produit le plus vendu sera en 
-tête de liste, afficher le nombre d’unités vendues pour chaque produit)
+The dashboard application will have on its main view the display of information and
+graphics important, all information will be retrieved relative to a range of
+selected dates:
+- Total amount of sales
+- Number of orders
+- Number of baskets
+- Value of an average basket
+- Number of new customers
+-% of recurrence of customer orders (a customer already registered to re-order, report
+between the number of orders with new customers on the selected range and the number of
+orders with existing customers)
+-% of abandoned carts (% of carts that have not been converted into orders)
+- Number of visits
+-% of basket conversion (% between the number of visits and the number of created baskets)
+-% of order conversion (% between the number of baskets and the number of orders
+created)
+- Total of products sold sorted in descending order (The most sold product will be in
+head of the list, display the number of units sold for each product)
 
-CONCEPTUALISATION BASE DE DONNEES
+DATABASE DESIGN
 
-Un client devra fournir au moins :
-- Genre
-- Nom
-- Prénom
-- Adresse mail
-- Mot de passe
-- Date de naissance
-- Adresse complète
-Une catégorie sera composée d’au moins :
-- Un nom
-- Si elle est parente ou si elle appartient à une sous-catégorie (sélection d’une catégorie 
-parente)
-Pour un produit, il est possible d'ajouter : 
-- Des photos
-- Une marque
-- Un titre
-- Une description
-- Un prix HT & TTC
-- Une quantité
-- La/les catégories auxquelles il appartient
-- S’il est actif ou non
-Enfin, pour une commande :
-- Le client associé (vous afficherez sur la commande un récap du client, j’aime savoir à 
-qui j’ai à faire (email, nb de commandes passées, date d’inscription, total dépensé sur 
-mon site)
-- Le/Les produits (nom, prix TTC, quantité, total TTC)
-- Le total de la commande
-- L’état de la commande changeable (acceptée, en cours de préparation, expédiée, 
-remboursée
+A customer must provide at least:
+- Gender
+- Last name
+- First name
+- Mail address
+- Password
+- Date of Birth
+- Full address
+A category will consist of at least:
+- A name
+- If it is related or if it belongs to a subcategory (selection of a category
+kinship)
+For a product, it is possible to add:
+- Pictures
+- A brand
+- A title
+- A description
+- A price HT & TTC
+- An amount
+- The category (s) to which it belongs
+- Whether it is active or not
+Finally, for an order:
+- The associated customer (you will display a summary of the customer on the order, I like to know at
+who I have to do (email, number of orders placed, date of registration, total spent on
+my website)
+- The product (s) (name, price including tax, quantity, total including tax)
+- The total of the order
+- The status of the changeable order (accepted, in preparation, shipped,
+reimbursed
