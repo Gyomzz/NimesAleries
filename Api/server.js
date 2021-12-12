@@ -18,7 +18,18 @@ app.use(cors());
 config.connection.connect();
 
 
+const execQuery = async (query) => {
+    return new Promise((resolve, reject) => {
+        config.connection.query(query,
+        function (err, results, fields) {
+            if (err) reject(err)
+            else resolve(results)
+        });
+    })
+}
+
 module.exports = config;
+module.exports = execQuery;
 
 require('./app/routes/request')(app);
 

@@ -1,14 +1,5 @@
 const connection = require('../../server.js').connection;
-
-const execQuery = async (query) => {
-    return new Promise((resolve, reject) => {
-        connection.query(query,
-        function (err, results, fields) {
-            if (err) reject(err)
-            else resolve(results)
-        });
-    })
-}
+const execQuery = require('../../server.js');
 
 const abandonedCart = async () => {
     return await execQuery(`SELECT ROUND((t_a.a * 100)/ t_b.b ,2) as pourcentage

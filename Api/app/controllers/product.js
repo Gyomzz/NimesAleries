@@ -1,14 +1,7 @@
 const connection = require('../../server.js').connection;
+const execQuery = require('../../server.js');
 
-const execQuery = async (query) => {
-    return new Promise((resolve, reject) => {
-        connection.query(query,
-        function (err, results, fields) {
-            if (err) reject(err)
-            else resolve(results)
-        });
-    })
-}
+
 
 const sumOfSales = async () => {
     return await execQuery(`SELECT SUM(product.price)
