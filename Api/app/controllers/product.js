@@ -3,7 +3,7 @@ const execQuery = require('../../server.js');
 
 
 const sumOfSales = async () => {
-    return await execQuery(`SELECT SUM(product.price)
+    return await execQuery(`SELECT SUM(product.price) as sumOfSales
         FROM product
         JOIN product_orders on product_orders.product_id = product.id
         join orders on orders.id = product_orders.orders_id
