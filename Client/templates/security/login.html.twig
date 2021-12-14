@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="container mt-4 shadow my-3" style="max-width: 1200px; height: 300px; ">
+	<div class="container mt-4  my-3">
 
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -59,7 +59,7 @@
 			</div>
 
 		{% else %}
-			<form method="post" class="mt-2 text-center" style="max-width: 1200px; height: 300px; ">
+			<form method="post" class="mt-2 text-center" style="height: 300px; ">
 
 				<div style="margin-left: 20%; margin-right: 20%;">
 
@@ -81,22 +81,9 @@
 						Se connecter
 					</button>
 				</div>
-
-				{#
-																																																            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																																																            See https://symfony.com/doc/current/security/remember_me.html
-																																																
-																																																            <div class="checkbox mb-3">
-																																																                <label>
-																																																                    <input type="checkbox" name="_remember_me"> Remember me
-																																																                </label>
-																																																            </div>
-																																																        #}
-
-
 			</form>
 		</div>
-		<div class="container mt-4 shadow" style="max-width: 1200px; height: 400px;">
+		<div class="container mt-4 " style="height: 400px;">
 			<div class="text-center">
 				<h2 class="mt-2">Vous êtes nouveau ? Inscrivez-vous vite</h2>
 				<span>et profitez de nombreux avantages !!!</span>
