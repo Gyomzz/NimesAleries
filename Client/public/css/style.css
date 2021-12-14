@@ -5,6 +5,23 @@ Author URI: http://www.wpthemesgrid.com/
 Description: Eshop - eCommerce HTML5 Template.
 Version:1.0
 ========================================*/
+.mb-6 {
+    margin-bottom:  4rem!important;
+}
+.mb-7 {
+    margin-bottom:  5rem!important;
+}
+.mb-8 {
+    margin-bottom:  6rem!important;
+}
+.mb-9 {
+    margin-bottom: 7rem !important;
+}
+.mb-10 {
+    margin-bottom: 8rem !important;
+}
+
+
 /*======================================
 [ CSS Table of contents ]
 01. Preloader CSS
