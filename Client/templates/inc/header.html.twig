@@ -72,7 +72,7 @@
 						</div>
 						<!-- Search Form -->
 						<div class="search-top">
-							<form class="search-form">
+							<form class="search-form" action="handleSearch" method="POST">
 								<input type="text" placeholder="Rechercher ici ..." name="search">
 								<button value="search" type="submit">
 									<i class="ti-search"></i>
@@ -87,15 +87,9 @@
 				<div class="col-lg-8 col-md-7 col-12">
 					<div class="search-bar-top">
 						<div class="search-bar">
-							<select id="categories">
-								<option selected="selected">Catégories</option>
-								{% for item in app.session.get('categories') %}
-									<option>{{item.name}}</option>
-								{% endfor %}
-							</select>
-							<form>
+							<form action="handleSearch" method="POST">
 								<input name="search" placeholder="Rechercher des produits ici ..." type="search">
-								<button class="btnn">
+								<button class="btnn" type="submit">
 									<i class="ti-search"></i>
 								</button>
 							</form>

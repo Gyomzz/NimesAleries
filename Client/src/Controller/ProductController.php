@@ -29,9 +29,20 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'title' => 'Liste des produits',
             'category' => false,
-            'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class)
+            'categoryRepo' => $categoryRepository
         ]);
     } 
+     /**
+     * @param string $name
+     * @Route("/produit/{name}", name="produit_display")
+     */
+    public function display(Product $product): Response
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+            'title' => 'Details du produit',
+        ]);
+    }
 
     /**
      * @Route("/{category}", name="produits_category")
@@ -68,4 +79,6 @@ class ProductController extends AbstractController
             'title' => 'Details du produit',
         ]);
     }
+
+   
 }
