@@ -7,8 +7,8 @@ $(document).ready(function(){
 	var map;
 	map = new GMaps({
 		el: '#myMap',
-		lat: 51.507351,
-		lng: -0.127758,
+		lat: 43.8321339,
+		lng: 4.2728192,
 		scrollwheel:false,
 		zoom: 15,
 		zoomControl : false,
