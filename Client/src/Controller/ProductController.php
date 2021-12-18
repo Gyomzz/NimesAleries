@@ -115,14 +115,11 @@ class ProductController extends AbstractController
         ]);
     }
 
-<<<<<<< HEAD
     private $requestStack;
 
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
     }
-=======
->>>>>>> c3af3bb58d7e1cb8a776c821ed777e4940fc2fcd
    
 }
