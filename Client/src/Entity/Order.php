@@ -46,6 +46,12 @@ class Order
     private $validity_date;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+    /**
      * An order that is in progress, not placed yet.
      *
      * @var string
@@ -174,6 +180,18 @@ class Order
     public function setValidityDate(?\DateTimeInterface $validity_date): self
     {
         $this->validity_date = $validity_date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -3,9 +3,13 @@
 namespace App\Manager;
 
 use App\Entity\Order;
+use App\Entity\User;
 use App\Factory\OrderFactory;
 use App\Storage\CartSessionStorage;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Security;
 
 class CartManager
 {
@@ -58,6 +62,7 @@ class CartManager
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * Persists the cart in database and session.
      *
      * @param Order $cart
@@ -76,9 +81,10 @@ class CartManager
      *
      * @param Order $cart
      */
-    public function confirm(Order $cart): void
+    public function confirm(Order $cart, User $user ): void
     {
         $cart->setValidityDate(new \DateTime());
+        $cart->setUser($user);
         // Persist in database
         $this->entityManager->persist($cart);
         $this->entityManager->flush();
