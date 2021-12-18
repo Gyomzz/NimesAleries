@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Manager\CartManager;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -13,8 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
    
-    public function index(): Response
+    public function index(CartManager $cartManager): Response
     {
+        $cart = $cartManager->getCurrentCart();
+        $session = $this->requestStack->getSession();
+        $session = $this->get('session');        
+        $session->set('cart', $cart);
         return $this->render('base.html.twig', [
             'title' => 'NimesAleries | home',
             'carousel' => $this->forward('App\Controller\CarouselController:getCarouselOrder'),

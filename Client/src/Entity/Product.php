@@ -30,12 +30,12 @@ class Product
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $price;
 
@@ -54,11 +54,6 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $Id_categorie;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Orders::class, inversedBy="products")
-     */
-    private $Product_order;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -160,30 +155,6 @@ class Product
     public function setIdCategorie(?Category $Id_categorie): self
     {
         $this->Id_categorie = $Id_categorie;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Orders[]
-     */
-    public function getProductOrder(): Collection
-    {
-        return $this->Product_order;
-    }
-
-    public function addProductOrder(Orders $productOrder): self
-    {
-        if (!$this->Product_order->contains($productOrder)) {
-            $this->Product_order[] = $productOrder;
-        }
-
-        return $this;
-    }
-
-    public function removeProductOrder(Orders $productOrder): self
-    {
-        $this->Product_order->removeElement($productOrder);
 
         return $this;
     }

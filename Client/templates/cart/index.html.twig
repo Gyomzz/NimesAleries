@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart
+{% endblock %}
+
+{% block body %}
+	<div class="shopping-cart section">
+		<div class="container">
+			{% if cart.items.count > 0 %}
+				{{ form_start(form) }}
+
+				<div class="row">
+					<div
+						class="col-12">
+						<!-- Shopping Summery -->
+						<table class="table shopping-summery">
+							<thead>
+								<tr class="main-hading">
+									<th>Produit</th>
+									<th>Nom du produit</th>
+									<th class="text-center">Prix</th>
+									<th class="text-center">Quantité</th>
+									<th class="text-center">
+										<i class="ti-trash remove-icon"></i>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for item in form.items %}
+									<tr>
+										<td class="image" data-title="No"><img src="{{ asset('uploads/' ~ item.vars.data.product.image )}}" alt="#"></td>
+
+										<td class="product-des" data-title="Description">
+											<p class="product-name">
+												<a href="{{ path('produit_display', {'name': item.vars.data.product.name }) }}">{{ item.vars.data.product.name }}</a>
+											</p>
+											<p class="product-des">{{ item.vars.data.product.description }}</p>
+										</td>
+										<td class="price" data-title="Price">
+											<span>{{ item.vars.data.product.price }}€
+											</span>
+										</td>
+										<td
+											class="qty" data-title="Qty">
+											<!-- Input Order -->
+											{{ form_widget(item.quantity, {'attr': {'class': 'input-group ' ~ (item.quantity.vars.valid ? '' : 'is-invalid')}}) }}
+
+											<!--/ End Input Order -->
+										</td>
+										<td class="action" data-title="Remove">
+											{{ form_widget(item.remove, {'attr': {'class': 'btn'}, 'label': 'supprimer'}) }}
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						<!--/ End Shopping Summery -->
+					</div>
+				</div>
+				<div class="row">
+					<div
+						class="col-12">
+						<!-- Total Amount -->
+						<div class="total-amount">
+							<div class="row">
+								<div class="col-lg-8 col-md-5 col-12">
+									<div class="left">
+										<div class="coupon"></div>
+										<div class="checkbox"></div>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-7 col-12">
+									<div class="right">
+										<ul>
+											<li>Total HT<span>{{ cart.total }}
+													€</span>
+											</li>
+											<li>Dont TVA(20%)<span>{{ cart.total * 0.20  }}
+													€</span>
+											</li>
+											<li>Livraison<span>Gratuite</span>
+											</li>
+											<li class="last">Total TTC<span>{{ cart.total }}
+													€</span>
+											</li>
+										</ul>
+										<div class="button5">
+											{{ form_widget(form.clear, {'attr': {'class': 'btn'}, 'label': 'Vider le panier'}) }}
+											{{ form_widget(form.save, {'attr': {'class': 'd-none'}}) }}
+											<a href="#" class="btn">Passer la commande</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{ form_end(form) }}
+			{% else %}
+				<div class="alert alert-info">
+					Votre panier est vide. Rendez vous sur la
+					<a href="{{ path('home') }}">liste des produits</a>.
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

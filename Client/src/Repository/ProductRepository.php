@@ -60,4 +60,25 @@ class ProductRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
+
+     // Find/search articles by title/content
+    public function findArticlesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('p.mark', ':query'),
+                        $qb->expr()->like('p.name', ':query'),
+                    ),
+                    $qb->expr()->isNotNull('p.created_at')
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }
