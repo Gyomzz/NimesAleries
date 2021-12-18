@@ -24,7 +24,7 @@ class CartController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $cart->setUpdatedAt(new \DateTime());
-            $cartManager->save($cart);
+            $cartManager->confirm($cart);
             $session = new Session();
             $session->set('cart', $cart);
 

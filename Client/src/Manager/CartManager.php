@@ -70,4 +70,20 @@ class CartManager
         // Persist in session
         $this->cartSessionStorage->setCart($cart);
     }
+
+    /**
+     * Persists the cart in database and session.
+     *
+     * @param Order $cart
+     */
+    public function confirm(Order $cart): void
+    {
+        $cart->setValidityDate(new \DateTime());
+        // Persist in database
+        $this->entityManager->persist($cart);
+        $this->entityManager->flush();
+        // Persist in session
+        $newCart = new Order;
+        $this->cartSessionStorage->setCart($newCart);
+    }
 }

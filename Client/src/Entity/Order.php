@@ -41,6 +41,11 @@ class Order
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $validity_date;
+
+    /**
      * An order that is in progress, not placed yet.
      *
      * @var string
@@ -159,5 +164,17 @@ class Order
         }
 
         return $total;
+    }
+
+    public function getValidityDate(): ?\DateTimeInterface
+    {
+        return $this->validity_date;
+    }
+
+    public function setValidityDate(?\DateTimeInterface $validity_date): self
+    {
+        $this->validity_date = $validity_date;
+
+        return $this;
     }
 }
