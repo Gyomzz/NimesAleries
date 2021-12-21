@@ -3,28 +3,27 @@ const execQuery = require('../../server.js');
 
 
 const sumOfSales = async () => {
-    return await execQuery(`SELECT SUM(product.price) as sumOfSales
+    return await execQuery(`SELECT sum(product.price * order_item.quantity) as sumOfSales
         FROM product
-        JOIN product_orders on product_orders.product_id = product.id
-        join orders on orders.id = product_orders.orders_id
-        WHERE orders.validity_date is not null
+        JOIN order_item ON order_item.product_id = product.id
+        JOIN order_ref ON order_ref.id = order_item.order_ref_id
+        WHERE order_ref.validity_date is NOT NULL;
     `)
 }
 
 const avgCartPrice = async () => {
-    return await execQuery(`SELECT round(AVG(product.price), 2) as averageCartPrice
-        FROM product_orders
-        JOIN product ON product.id = product_orders.product_id
-        JOIN orders ON orders.id = product_orders.orders_id
+    return await execQuery(`SELECT AVG(product.price * order_item.quantity) as averageCartPrice
+        FROM product
+        JOIN order_item ON order_item.product_id = product.id;
     `)
 }
 
 const getIdListOfBestProducts = async () => {
     return await execQuery(`SELECT DISTINCT COUNT(product_id) AS bestProduct, product_id 
-    FROM product_orders 
+    FROM order_item 
     GROUP BY product_id 
     ORDER BY bestProduct  
-    DESC LIMIT 10`)
+    DESC LIMIT 10;`)
 }
 
 const getProductById = async (id) => {
