@@ -41,9 +41,9 @@ class ContactController extends AbstractController
             ]
             ]
         ];
-
-        $response = $mj->post(Resources::$Email, ['body' => $body]);
-        $response->success() && var_dump($response->getData()); 
+        // uncomment below to active the mailer
+        // $response = $mj->post(Resources::$Email, ['body' => $body]);
+        // $response->success() && var_dump($response->getData()); 
         return $this->redirectToRoute('index');
     }
     return $this->render('contact/index.html.twig', [
