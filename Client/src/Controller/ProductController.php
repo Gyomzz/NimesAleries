@@ -52,6 +52,9 @@ class ProductController extends AbstractController
                 ->setUpdatedAt(new \DateTime());
 
             $cartManager->save($cart);
+            $session = $this->requestStack->getSession();
+            $session = $this->get('session');        
+            $session->set('cart', $cart);
         }
         return $this->render('product/show.html.twig', [
             'product' => $product,
