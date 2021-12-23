@@ -61,6 +61,20 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findProductWithImage()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            WHERE p.image is NOT NULL'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
      // Find/search articles by title/content
     public function findArticlesByName(string $query)
     {

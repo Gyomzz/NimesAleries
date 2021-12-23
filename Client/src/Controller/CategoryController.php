@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Manager\CartManager;
-use App\Repository\CategoryRepository;
+use App\Repository\OrderItemRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
    
-    public function index(CartManager $cartManager): Response
+    public function index(CartManager $cartManager, ProductRepository $productRepository, OrderItemRepository $orderItemRepository): Response
     {
         $cart = $cartManager->getCurrentCart();
         $session = $this->requestStack->getSession();
@@ -24,6 +25,8 @@ class CategoryController extends AbstractController
             'title' => 'NimesAleries | home',
             'carousel' => $this->forward('App\Controller\CarouselController:getCarouselOrder'),
             'category' => $this->getCategory(),
+            'featured_Product' => $productRepository->findProductWithImage(),
+            'trending_product' => $orderItemRepository->findBestProduct()
         ]);
     }
     

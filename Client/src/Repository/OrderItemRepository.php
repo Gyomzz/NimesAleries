@@ -47,4 +47,19 @@ class OrderItemRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findBestProduct()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            SELECT DISTINCT(COUNT(order_item.product_id)) AS count, product.id, product.price, product.name, product.stock, product.image
+            FROM product
+            JOIN order_item  ON product.id = order_item.product_id
+            GROUP BY product_id 
+            ORDER BY count  
+            DESC LIMIT 10
+            ';
+        $stmt = $conn->executeQuery($sql);
+        return $stmt->fetchAll();
+
+    }
 }
