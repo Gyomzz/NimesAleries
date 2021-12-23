@@ -24,12 +24,13 @@ class ProductController extends AbstractController
      /**
      * @Route("/produits", name="produits")
      */
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
         return $this->render('product/index.html.twig', [
             'title' => 'Liste des produits',
             'category' => false,
-            'categoryRepo' => $categoryRepository
+            'categoryRepo' => $categoryRepository,
+            'products' => $productRepository->findAll()
         ]);
     } 
      /**
@@ -71,7 +72,8 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'title' => 'Liste des produits',
             'category' => $categoryRepository->findBy(array('name' => $category)),
-            'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class)
+            'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class),
+            'products' => false
         ]);
     }
     /**
@@ -82,7 +84,8 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'title' => 'Liste des produits',
             'category' => $categoryRepository->findBy(array('name' => $child)),
-            'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class)
+            'categoryRepo' =>  $this->getDoctrine()->getManager()->getRepository(Category::class),
+            'products' => false
         ]);
     }
     /**

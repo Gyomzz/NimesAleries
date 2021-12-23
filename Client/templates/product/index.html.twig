@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index
+{% block title %}
+	{{title}}
 {% endblock %}
 
 {% block body %}
@@ -199,7 +200,10 @@
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-8 col-12">
-					{% include "product/productByCategory.html.twig" with {'category' : category } %}
+					{% if products %}
+						{% include "product/productByDefault.html.twig" %}
+					{% endif %}
+						{% include "product/productByCategory.html.twig" with {'category' : category } %}
 				</div>
 			</div>
 		</div>
