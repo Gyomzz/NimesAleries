@@ -1,0 +1,16 @@
+.hundred {
+  width: auto;
+}
+.row {
+  --bs-gutter-x: 0;
+}
+h3 {
+  color: white;
+}
+i {
+  color: white;
+}
+img {
+  width: 150px;
+}
+

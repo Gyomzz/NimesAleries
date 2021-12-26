@@ -1,0 +1,11 @@
+.row {
+  --bs-gutter-x: 0;
+}
+.col-4 {
+  flex: 0 0 auto;
+  width: 30.33333333%;
+}
+.col-3 {
+  flex: 0 0 auto;
+  width: 22%;
+}
