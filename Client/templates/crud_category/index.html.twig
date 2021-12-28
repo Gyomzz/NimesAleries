@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    {{ parent() }}
+      <!-- in the <head> section -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+{% endblock %}
 {% block body %}
 	<div class="container mt-3">
 		<h1>Gestion des catégorie</h1>
 		<a href="{{ path('crud_category_new') }}" class="my-2">Ajouter une catégorie</a>
-		<table class="table">
+		<table id="example" class="display" style="width:100%">
 			<thead class="sticky-top text-white" style=" background: #333; top: 50px;">
 				<tr>
 					<th>Id</th>
@@ -36,12 +40,22 @@
 							{{ include('crud_category/_delete_form.html.twig') }}
 						</td>
 					</tr>
-				</td>
-			</tbody>
-		</tr>
-	{% else %}
-		<tr>
-			<td colspan="5">no records found</td>
-		</tr>
-	{% endfor %}
-</tbody></table></div>{% endblock %}
+	            {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% block javascripts %}
+        {{ parent() }}
+        <!-- before the closing <body> tag -->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+        <script> 
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } ); 
+        </script>
+    {% endblock %}
+{% endblock %}
