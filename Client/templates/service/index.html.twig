@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center mt-5 text-danger font-weight-bold"> Les services NimesAleries </h2>
+    <h5 class="text-center my-2 text-dark"> Une multitude de services pour vous accompagner </h5>
+    <div class="row my-5">
+        <div class="col-lg-6 col-12 mb-5">
+            <div class="text-center">
+                <img src="{{ asset('images/click_collect_200px.png')}}" class="img-fluid">
+            </div>
+            <h4 class="text-uppercase text-center text-danger"> Click & Collect </h4>
+            <span> Commandez sur NimesAleries et venez récupérer votre commande sous 2 heures en magasin.</span>
+        </div>
+        <div class="col-lg-6 col-12 mb-5">
+            <div class="text-center">
+                <img src="{{ asset('images/clickToDrive_200px.png')}}" class="img-fluid">
+            </div>
+            <h4 class="text-uppercase text-center text-danger"> Click to drive </h4>
+            <span> Effectuez vos achats en toute sécurité avec le service de retrait sans contact "Click to Drive". Vous avez désormais la possibilité de retirer vos achats passés sur le web à l'extérieur du magasin. </span>
+        </div>
+        <div class="col-lg-6 col-12 mb-5">
+            <div class="text-center">
+                <img src="{{ asset('images/LivraisonDomicile_200px.png')}}" class="img-fluid">
+            </div>
+            <h4 class="text-uppercase text-center text-danger"> LIVRAISON A DOMICILE ET EN MAGASIN </h4>
+            <span> Commandez sur Animalis.com et bénéficiez de la livraison gratuite, sans minimum d'achat, si vous choisissez la livraison en magasin Animalis. Votre commande est expédiée sous 72h dans le magasin Animalis de votre choix ou directement chez vous avec la livraison à domicile. </span>
+        </div>
+        <div class="col-lg-6 col-12 mb-5">
+            <div class="text-center">
+                <img src="{{ asset('images/DispoDesStocks_200px.png')}}" class="img-fluid">
+            </div>
+            <h4 class="text-uppercase text-center text-danger"> DISPONIBILITE DES STOCKS EN MAGASIN </h4>
+            <span> Consultez la disponibilité de votre produit préféré en ligne, pour être plus serein avant de vous déplacer en magasin.  </span>
+        </div>
+    <div>
+</div>
+{% endblock %}
