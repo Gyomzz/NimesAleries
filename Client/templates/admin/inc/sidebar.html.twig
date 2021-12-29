@@ -18,7 +18,9 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{path('crud_carousel_index')}}" class="nav-link text-white d-flex">
+			<a href="{{path('crud_carousel_index')}}" class="nav-link text-white d-flex {{activeMenu(['crud_carousel_index'])}}">
+
+
 				<i class="fas fa-images"></i>
 				<p class="ps-2">
 					Carousel
@@ -26,7 +28,8 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{path('crud_category_index')}}" class="nav-link text-white d-flex">
+			<a href="{{path('crud_category_index')}}" class="nav-link text-white d-flex {{activeMenu(['crud_category_index'])}}">
+
 				<i class="fas fa-th-large"></i>
 				<p class="ps-2">
 					Categories
@@ -34,7 +37,8 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{path('crud_product_index')}}" class="nav-link text-white d-flex">
+			<a href="{{path('crud_product_index')}}" class="nav-link text-white d-flex {{activeMenu(['crud_product_index'])}}">
+
 				<i class="fas fa-gifts"></i>
 				<p class="ps-2">
 					Produits
@@ -42,7 +46,8 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{path('crud_user_index')}}" class="nav-link text-white d-flex">
+			<a href="{{path('crud_user_index')}}" class="nav-link text-white d-flex {{activeMenu(['crud_user_index'])}}">
+
 				<i class="fas fa-user"></i>
 				<p class="ps-2">
 					Utilisateurs
