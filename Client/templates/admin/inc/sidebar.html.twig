@@ -1,0 +1,72 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark h-100 sticky-top" style="width: 280px;">
+
+
+	<a href="{{path('admin')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+		<svg class="bi me-2" width="40" height="32">
+			<use xlink:href="#bootstrap"></use>
+		</svg>
+		<span class="fs-2">Administration du site</span>
+	</a>
+	<hr>
+	<ul class="nav nav-pills flex-column mb-auto">
+		<li class="nav-item">
+			<a href="{{path('admin')}}" class="nav-link text-white d-flex {{activeMenu(['admin'])}}">
+				<i class="fas fa-home"></i>
+				<p class="ps-2">
+					Dashboard
+				</p>
+			</a>
+		</li>
+		<li>
+			<a href="{{path('crud_carousel_index')}}" class="nav-link text-white d-flex">
+				<i class="fas fa-images"></i>
+				<p class="ps-2">
+					Carousel
+				</p>
+			</a>
+		</li>
+		<li>
+			<a href="{{path('crud_category_index')}}" class="nav-link text-white d-flex">
+				<i class="fas fa-th-large"></i>
+				<p class="ps-2">
+					Categories
+				</p>
+			</a>
+		</li>
+		<li>
+			<a href="{{path('crud_product_index')}}" class="nav-link text-white d-flex">
+				<i class="fas fa-gifts"></i>
+				<p class="ps-2">
+					Produits
+				</p>
+			</a>
+		</li>
+		<li>
+			<a href="{{path('crud_user_index')}}" class="nav-link text-white d-flex">
+				<i class="fas fa-user"></i>
+				<p class="ps-2">
+					Utilisateurs
+				</p>
+			</a>
+		</li>
+	</ul>
+	<hr>
+	<div class="dropdown">
+		<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle ps-4" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+			<strong>
+				{% if app.user %}
+					{{app.user.name}}
+				{% endif %}
+			</strong>
+
+		</a>
+		<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+			<li>
+				<a class="dropdown-item" href="#">Se deconnecter</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="/">Retourner sur le site</a>
+			</li>
+		</ul>
+	</div>
+</div>

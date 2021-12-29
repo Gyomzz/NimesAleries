@@ -1,32 +1,32 @@
 {{ form_start(form, {'attr': {'class': 'form'}}) }}
 <div class="row">
-	<div class="col-lg-3 col-6">
+	<div class="col-12">
 		<label>
 			Titre
 			<span style="color: #ff2c18;">*</span>
 		</label>
-		{{ form_row(form.Title, {'attr': {'class': 'form-group'}}) }}
+		{{ form_row(form.Title, {'attr': {'class': 'form-control'}}) }}
 	</div>
-	<div class="col-lg-3 col-6">
+	<div class="col-12">
 		<label>
 			Accroche
 			<span style="color: #ff2c18;">*</span>
 		</label>
-		{{ form_row(form.teaser, {'attr': {'class': 'form-group'}}) }}
+		{{ form_row(form.teaser, {'attr': {'class': 'form-control'}}) }}
 	</div>
-	<div class="col-lg-3 col-6">
+	<div class="col-12">
 		<label>
 			Ordre dans le carousel
 			<span style="color: #ff2c18;">*</span>
 		</label>
-		{{ form_row(form.ordering, {'attr': {'class': 'form-group'}}) }}
+		{{ form_row(form.ordering, {'attr': {'class': 'form-control'}}) }}
 	</div>
-	<div class="col-lg-3 col-6">
+	<div class="col-12">
 		<label>
 			Image (Jpeg, Png)
 			<span style="color: #ff2c18;">* :</span>
 		</label>
-		{{ form_row(form.picture, {'attr': {'class': 'form-group'}}) }}
+		{{ form_row(form.picture, {'attr': {'class': 'form-control'}}) }}
 	</div>
 	<div class="col-12">
 		<label>
@@ -34,7 +34,7 @@
 			<span style="color: #ff2c18;">*</span>
 		</label>
 
-		{{ form_row(form.description, {'attr': {'class': 'form-group message'}}) }}
+		{{ form_row(form.description, {'attr': {'class': 'form-control message'}}) }}
 	</div>
 	<div class="col-6 mx-auto">
 		<div class="form-group button">
