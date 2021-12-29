@@ -21,7 +21,7 @@
 						<td>{{ carousel.id }}</td>
 						<td>{{ carousel.Title }}</td>
 						<td>
-							<a href="{{ asset('uploads/' ~ carousel.image) }}">Voir l'image</a>
+							<img src="{{ asset('uploads/' ~ carousel.image) }}" alt="{{ carousel.name }}"class="img-fluid">
 						</td>
 
 						<td>{{ carousel.ordering }}</td>
