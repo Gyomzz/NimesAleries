@@ -114,35 +114,47 @@
 						<div class="sinlge-bar shopping">
 							<a href="{{path('cart')}}" class="single-icon">
 								<i class="ti-bag"></i>
-								<span class="total-count">{{cart.items.count}}</span>
+								<span class="total-count">
+									{% if cart %}
+										{{cart.items.count}}
+									{% endif %}
+								</span>
 							</a>
 							<!-- Shopping Item -->
 							<div class="shopping-item">
 								<div class="dropdown-cart-header">
-									<span>{{cart.items.count}}
+									<span>
+										{% if cart %}
+											{{cart.items.count}}
+										{% endif %}
 										Produits</span>
 
 									<a href="{{path('cart')}}">Voir panier</a>
 								</div>
 								<ul class="shopping-list">
-									{% for item in cart.items %}
-										<li>
-											<a class="cart-img" href="#"><img src="{{ asset('uploads/' ~ item.product.image)}}" alt="#"></a>
-											<h4>
-												<a href="{{ path('produit_display', {'name': item.product.name }) }}">{{item.product.name}}</a>
-											</h4>
-											<p class="quantity">{{item.quantity}}x -
+									{% if cart %}
+										{% for item in cart.items %}
+											<li>
+												<a class="cart-img" href="#"><img src="{{ asset('uploads/' ~ item.product.image)}}" alt="#"></a>
+												<h4>
+													<a href="{{ path('produit_display', {'name': item.product.name }) }}">{{item.product.name}}</a>
+												</h4>
+												<p class="quantity">{{item.quantity}}x -
 
-												<span class="amount">{{item.product.price}}
-													€</span>
-											</p>
-										</li>
-									{% endfor %}
+													<span class="amount">{{item.product.price}}
+														€</span>
+												</p>
+											</li>
+										{% endfor %}
+									{% endif %}
 								</ul>
 								<div class="bottom">
 									<div class="total">
 										<span>Total</span>
-										<span class="total-amount">{{cart.total}}
+										<span class="total-amount">
+											{% if cart %}
+												{{cart.total}}
+											{% endif %}
 											€</span>
 									</div>
 									<a href="{{path('cart')}}" class="btn animate">Vérifier</a>
@@ -151,6 +163,13 @@
 							</div>
 							<!--/ End Shopping Item -->
 						</div>
+						{% if is_granted('ROLE_ADMIN') %}
+							<div class="sinlge-bar">
+								<a href="{{ path('admin') }}" class="single-icon">
+									<i class="fa fa-cog" aria-hidden="true"></i>
+								</a>
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
