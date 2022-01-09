@@ -1,4 +1,4 @@
-<div class="row">
+{# <div class="row">
 	<div
 		class="col-12">
 		<!-- Shop Top -->
@@ -6,27 +6,22 @@
 			<div class="shop-shorter">
 				<div class="single-shorter">
 					<label>Afficher :</label>
-					<select>
-						<option selected="selected">09</option>
-						<option>15</option>
-						<option>25</option>
-						<option>30</option>
+					<select id="numberPerPages">
+						<option value="09">09</option>
+						<option value="15">15</option>
+						<option value="25">25</option>
+						<option value="30">30</option>
 					</select>
 				</div>
 				<div class="single-shorter">
-					<label>Trier par :</label>
-					<select>
-						<option selected="selected">Name</option>
-						<option>Price</option>
-						<option>Size</option>
-					</select>
+                    <label>Trier par :</label>
 				</div>
-			</div>
-		</div>
-		<!--/ End Shop Top -->
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</div> #}
 <div class="row">
+    {{ knp_pagination_render(products) }}
 	{% for product in products %}
 		<div class="col-lg-4 col-md-6 col-12">
 			<div class="single-product">
@@ -74,4 +69,6 @@
 			</div>
 		</div>
 	{% endfor %}
+    {{ knp_pagination_render(products) }}
+
 </div>

@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Entity\OrdersProduct;
 use App\Entity\Product;
 use App\Form\AddToCartType;
 use App\Manager\CartManager;
 use App\Repository\CategoryRepository;
-use App\Repository\OrdersProductRepository;
-use App\Repository\ProductRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -20,17 +17,24 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-   
+
+    
      /**
      * @Route("/produits", name="produits")
      */
-    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
+    public function index(CategoryRepository $categoryRepository,Request $request, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Product::class)->findAll(),
+            $request->query->getInt('page', 1), 
+            9
+        );
+       
         return $this->render('product/index.html.twig', [
             'title' => 'Liste des produits',
             'category' => false,
             'categoryRepo' => $categoryRepository,
-            'products' => $productRepository->findAll()
+            'products' => $pagination
         ]);
     } 
      /**
