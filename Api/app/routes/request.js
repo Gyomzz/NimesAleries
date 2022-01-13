@@ -4,7 +4,7 @@ const ProductController = require('../controllers/product');
 const OrderController = require('../controllers/order');
 
 module.exports = (app) => {
-    
+
     /**
      * @api {get} /sumOfSales Sum of Sales.
      * @apiName SumOfSales
@@ -13,7 +13,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/sumOfSales
      */
-    requestRoutes.get('/api/sumOfSales', ProductController.getSumOfSales);
+    requestRoutes.get('/sumOfSales', ProductController.getSumOfSales);
 
     /**
      * @api {get} /avgCartPrice Average price of cart.
@@ -23,7 +23,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/avgCartPrice
      */
-    requestRoutes.get('/api/avgCartPrice', ProductController.getAvgCartPrice);
+    requestRoutes.get('/avgCartPrice', ProductController.getAvgCartPrice);
 
     /**
      * @api {get} /bestProducts Best products.
@@ -33,7 +33,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/bestProducts
      */
-    requestRoutes.get('/api/bestProducts', ProductController.getBestProducts);
+    requestRoutes.get('/bestProducts', ProductController.getBestProducts);
 
     /**
      * @api {get} /newClient New client.
@@ -43,7 +43,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/newClient
      */
-    requestRoutes.get('/api/newClient', OrderController.getPercentageOfNewClient);
+    requestRoutes.get('/newClient', OrderController.getPercentageOfNewClient);
 
     /**
      * @api {get} /numberOfCarts Number of carts.
@@ -53,7 +53,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/numberOfCarts
      */
-    requestRoutes.get('/api/numberOfCarts', OrderController.getNumberOfCarts);
+    requestRoutes.get('/numberOfCarts', OrderController.getNumberOfCarts);
 
     /**
      * @api {get} /numberOfOrders Numbers of orders.
@@ -63,7 +63,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/numberOfOrders
      */
-    requestRoutes.get('/api/numberOfOrders', OrderController.getNumberOfOrders);
+    requestRoutes.get('/numberOfOrders', OrderController.getNumberOfOrders);
     
     /**
      * @api {get} /abandonedCart Abandoned Cart.
@@ -73,7 +73,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/abandonedCart
      */
-    requestRoutes.get('/api/abandonedCart', OrderController.getPercentageAbandonedCart);
+    requestRoutes.get('/abandonedCart', OrderController.getPercentageAbandonedCart);
 
     /**
      * @api {get} /convertedCart Converted Cart.
@@ -83,7 +83,7 @@ module.exports = (app) => {
      * @apiExample {curl} Example usage:
      *     curl -i https://api-nimesaleries.herokuapp.com/api/convertedCart
      */
-    requestRoutes.get('/api/convertedCart', OrderController.getPercentageConvertedCart);
+    requestRoutes.get('/convertedCart', OrderController.getPercentageConvertedCart);
 
     app.use('/', requestRoutes);
     

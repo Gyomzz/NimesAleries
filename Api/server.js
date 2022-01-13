@@ -36,7 +36,7 @@ module.exports = execQuery;
 
 require('./app/routes/request')(app);
 
-app.use('/api', express.static('apidoc'));
+app.use('/', express.static('apidoc'));
 
 app.all('/', function(req,res){
   res.redirect('/request');
