@@ -5,21 +5,25 @@ const OrderController = require('../controllers/order');
 
 module.exports = (app) => {
 
-    requestRoutes.get('/sumOfSales', ProductController.getSumOfSales);
+    requestRoutes.get('/api', function(req, res){
+        res.sendFile(appRoot + '/app/views/doc.html');
+    });
 
-    requestRoutes.get('/avgCartPrice', ProductController.getAvgCartPrice);
+    requestRoutes.get('/api/sumOfSales', ProductController.getSumOfSales);
+
+    requestRoutes.get('/api/avgCartPrice', ProductController.getAvgCartPrice);
     
-    requestRoutes.get('/bestProducts', ProductController.getBestProducts);
+    requestRoutes.get('/api/bestProducts', ProductController.getBestProducts);
 
-    requestRoutes.get('/newClient', OrderController.getPercentageOfNewClient);
+    requestRoutes.get('/api/newClient', OrderController.getPercentageOfNewClient);
 
-    requestRoutes.get('/numberOfCarts', OrderController.getNumberOfCarts);
+    requestRoutes.get('/api/numberOfCarts', OrderController.getNumberOfCarts);
 
-    requestRoutes.get('/numberOfOrders', OrderController.getNumberOfOrders);
+    requestRoutes.get('/api/numberOfOrders', OrderController.getNumberOfOrders);
     
-    requestRoutes.get('/abandonedCart', OrderController.getPercentageAbandonedCart);
+    requestRoutes.get('/api/abandonedCart', OrderController.getPercentageAbandonedCart);
 
-    requestRoutes.get('/convertedCart', OrderController.getPercentageConvertedCart);
+    requestRoutes.get('/api/convertedCart', OrderController.getPercentageConvertedCart);
 
     app.use('/', requestRoutes);
     

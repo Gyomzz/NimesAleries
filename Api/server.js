@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+
+const path = require('path');
 const PORT = process.env.SERVER_PORT;
 const express = require('express');
 const cors = require('cors');
@@ -7,11 +9,13 @@ const app = express();
 const mysql = require('mysql');
 const config = {
     connection : mysql.createConnection({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })}
+
+global.appRoot = path.resolve(__dirname);
 
 app.use(cors());
 
@@ -32,10 +36,10 @@ module.exports = execQuery;
 
 require('./app/routes/request')(app);
 
-app.use((req, res, next) => {
-    res.redirect('/request');
-})
+app.all('/', function(req,res){
+  res.redirect('/request');
+});
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 6060, () => {
     console.log(`Server is running on port : ${PORT}`);
 })
