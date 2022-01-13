@@ -36,10 +36,19 @@ module.exports = execQuery;
 
 require('./app/routes/request')(app);
 
+app.use('/api', express.static('apidoc'));
+
 app.all('/', function(req,res){
   res.redirect('/request');
 });
 
+
 app.listen(process.env.PORT || 6060, () => {
     console.log(`Server is running on port : ${PORT}`);
 })
+
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});

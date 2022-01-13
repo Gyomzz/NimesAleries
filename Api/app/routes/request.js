@@ -4,11 +4,7 @@ const ProductController = require('../controllers/product');
 const OrderController = require('../controllers/order');
 
 module.exports = (app) => {
-
-    requestRoutes.get('/api', function(req, res){
-        res.sendFile(appRoot + '/apidoc/index.html');
-    });
-
+    
     /**
      * @api {get} /sumOfSales Sum of Sales.
      * @apiName SumOfSales
