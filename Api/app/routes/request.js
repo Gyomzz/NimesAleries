@@ -11,7 +11,7 @@ module.exports = (app) => {
      * @apiGroup Product
      * @apiDescription return the Sum of the sales.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/sumOfSales
+     *     curl -i https://api-nimesaleries.herokuapp.com/sumOfSales
      */
     requestRoutes.get('/sumOfSales', ProductController.getSumOfSales);
 
@@ -21,7 +21,7 @@ module.exports = (app) => {
      * @apiGroup Product
      * @apiDescription return the average price of a cart.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/avgCartPrice
+     *     curl -i https://api-nimesaleries.herokuapp.com/avgCartPrice
      */
     requestRoutes.get('/avgCartPrice', ProductController.getAvgCartPrice);
 
@@ -31,7 +31,7 @@ module.exports = (app) => {
      * @apiGroup Product
      * @apiDescription return the best products with count orderby count desc.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/bestProducts
+     *     curl -i https://api-nimesaleries.herokuapp.com/bestProducts
      */
     requestRoutes.get('/bestProducts', ProductController.getBestProducts);
 
@@ -41,7 +41,7 @@ module.exports = (app) => {
      * @apiGroup Order
      * @apiDescription return the pourcentage of new client.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/newClient
+     *     curl -i https://api-nimesaleries.herokuapp.com/newClient
      */
     requestRoutes.get('/newClient', OrderController.getPercentageOfNewClient);
 
@@ -51,7 +51,7 @@ module.exports = (app) => {
      * @apiGroup Order
      * @apiDescription return the number of carts.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/numberOfCarts
+     *     curl -i https://api-nimesaleries.herokuapp.com/numberOfCarts
      */
     requestRoutes.get('/numberOfCarts', OrderController.getNumberOfCarts);
 
@@ -61,7 +61,7 @@ module.exports = (app) => {
      * @apiGroup Order
      * @apiDescription return the numbers of orders.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/numberOfOrders
+     *     curl -i https://api-nimesaleries.herokuapp.com/numberOfOrders
      */
     requestRoutes.get('/numberOfOrders', OrderController.getNumberOfOrders);
     
@@ -71,7 +71,7 @@ module.exports = (app) => {
      * @apiGroup Order
      * @apiDescription return the pourcentage of cart abandoned.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/abandonedCart
+     *     curl -i https://api-nimesaleries.herokuapp.com/abandonedCart
      */
     requestRoutes.get('/abandonedCart', OrderController.getPercentageAbandonedCart);
 
@@ -81,7 +81,7 @@ module.exports = (app) => {
      * @apiGroup Order
      * @apiDescription return the pourcentage of cart converted.
      * @apiExample {curl} Example usage:
-     *     curl -i https://api-nimesaleries.herokuapp.com/api/convertedCart
+     *     curl -i https://api-nimesaleries.herokuapp.com/convertedCart
      */
     requestRoutes.get('/convertedCart', OrderController.getPercentageConvertedCart);
 
