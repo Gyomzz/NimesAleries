@@ -2,8 +2,41 @@ const express = require('express');
 const requestRoutes = express.Router();
 const ProductController = require('../controllers/product');
 const OrderController = require('../controllers/order');
+const jwt = require('jsonwebtoken')
+const SECRET = 'mykey'
+
+/* Get header bearer */
+const extractBearerToken = headerValue => {
+    if (typeof headerValue !== 'string') {
+        return false
+    }
+
+    const matches = headerValue.match(/(bearer)\s+(\S+)/i)
+    return matches && matches[2]
+}
+
+/* Check token */
+const checkTokenMiddleware = (req, res, next) => {
+    console.log(req.headers);
+    // Get token
+    const token = req.headers.authorization && extractBearerToken(req.headers.authorization)
+
+
+    if (!token) {
+        return res.status(401).json({ message: 'Error. Need a token' })
+    }
+
+    jwt.verify(token, SECRET, (err, decodedToken) => {
+        if (err) {
+            res.status(401).json({ message: 'Error. Bad token' })
+        } else {
+            return next()
+        }
+    })
+}
 
 module.exports = (app) => {
+
 
     /**
      * @api {get} /sumOfSales Sum of Sales.
@@ -15,7 +48,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /sumOfSales
      */
-    requestRoutes.get('/sumOfSales', ProductController.getSumOfSales);
+    requestRoutes.get('/sumOfSales', checkTokenMiddleware, ProductController.getSumOfSales);
 
     /**
      * @api {get} /avgCartPrice Average price of cart.
@@ -27,7 +60,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /avgCartPrice
      */
-    requestRoutes.get('/avgCartPrice', ProductController.getAvgCartPrice);
+    requestRoutes.get('/avgCartPrice', checkTokenMiddleware, ProductController.getAvgCartPrice);
 
     /**
      * @api {get} /bestProducts Best products.
@@ -39,7 +72,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /bestProducts
      */
-    requestRoutes.get('/bestProducts', ProductController.getBestProducts);
+    requestRoutes.get('/bestProducts', checkTokenMiddleware, ProductController.getBestProducts);
 {}
     /**
      * @api {get} /newClient New client.
@@ -51,7 +84,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /newClient
      */
-    requestRoutes.get('/newClient', OrderController.getPercentageOfNewClient);
+    requestRoutes.get('/newClient', checkTokenMiddleware, OrderController.getPercentageOfNewClient);
 
     /**
      * @api {get} /numberOfCarts Number of carts.
@@ -63,7 +96,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /numberOfCarts
      */
-    requestRoutes.get('/numberOfCarts', OrderController.getNumberOfCarts);
+    requestRoutes.get('/numberOfCarts', checkTokenMiddleware, OrderController.getNumberOfCarts);
 
     /**
      * @api {get} /numberOfOrders Numbers of orders.
@@ -75,7 +108,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /numberOfOrders
      */
-    requestRoutes.get('/numberOfOrders', OrderController.getNumberOfOrders);
+    requestRoutes.get('/numberOfOrders', checkTokenMiddleware, OrderController.getNumberOfOrders);
     
     /**
      * @api {get} /abandonedCart Abandoned Cart.
@@ -87,7 +120,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /abandonedCart
      */
-    requestRoutes.get('/abandonedCart', OrderController.getPercentageAbandonedCart);
+    requestRoutes.get('/abandonedCart', checkTokenMiddleware, OrderController.getPercentageAbandonedCart);
 
     /**
      * @api {get} /convertedCart Converted Cart.
@@ -99,7 +132,7 @@ module.exports = (app) => {
      * @apiVersion 1.0.0
      * @apiSampleRequest /convertedCart
      */
-    requestRoutes.get('/convertedCart', OrderController.getPercentageConvertedCart);
+    requestRoutes.get('/convertedCart', checkTokenMiddleware, OrderController.getPercentageConvertedCart);
 
     app.use('/', requestRoutes);
     
