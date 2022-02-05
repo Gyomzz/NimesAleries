@@ -20,6 +20,7 @@ class AccountController extends AbstractController
             'title' => 'Mon compte'
         ]);
     }
+    
     /**
      * @Route("/compte/facture/{factureId}", name="detail_facture")
      */
