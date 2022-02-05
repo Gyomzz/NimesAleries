@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!
+{% block title %}{{ title }}
 {% endblock %}
 
 {% block body %}
@@ -26,7 +26,7 @@
 					{% for item in app.user.getOrders() %}
 						<tr class="d-flex justify-content-between">
 							<th scope="row">{{ item.getValidityDate()|date("d/m/Y H:i", "Europe/Paris") }}</th>
-							<td>Voir la commande</td>
+							<td><a href="{{ path('detail_facture', {'factureId': item.id }) }}">Voir la commande</a></td>
 						</tr>
 					{% endfor %}
 				</tbody>

@@ -1,21 +1,54 @@
-version: '3'
+version: '3.4'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+
+  base:
+    container_name: ${COMPOSE_PROJECT_NAME}_base
+    image: ${COMPOSE_PROJECT_NAME}_base
+    build:
+      context: docker/base/php
+      args:
+        COMPOSE_UID: ${COMPOSE_UID}
+        COMPOSE_GID: ${COMPOSE_GID}
+    entrypoint: /bin/bash
+
+  dev:
+    container_name: ${COMPOSE_PROJECT_NAME}_dev
+    build:
+      context: docker/dev/php
+      args:
+        COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+    ports:
+      - 80:8080
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+      APP_ENV: dev
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - ./:/var/www/html:delegated
+      - ./docker/dev/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/dev/php/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - base
+
+  db:
+    container_name: ${COMPOSE_PROJECT_NAME}_db
+    image: mariadb:10.2.19
+    environment:
+      MYSQL_ROOT_PASSWORD: nimesaleries
+      MYSQL_DATABASE: nimesaleries
+      MYSQL_USER: nimesaleries
+      MYSQL_PASSWORD: nimesaleries
+    volumes:
+      - db_data:/var/lib/mysql
+
+  pma:
+    container_name: ${COMPOSE_PROJECT_NAME}_pma
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+
+  db_data:
+    name: ${COMPOSE_PROJECT_NAME}_db_data

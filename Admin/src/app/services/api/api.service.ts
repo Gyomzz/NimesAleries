@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiService {
-
-  static rootUrl = 'http://localhost:8080';
+  static rootUrl = 'https://api-nimesaleries.herokuapp.com';
 
   constructor() {}
 
@@ -40,5 +39,4 @@ export class ApiService {
   static convertedCartUrl(): string {
     return `${ApiService.rootUrl}/convertedCart`;
   }
-
 }

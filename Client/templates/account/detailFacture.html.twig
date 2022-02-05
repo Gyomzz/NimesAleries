@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }}
+{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h2>
+        Facture du :
+        {{ facture.getValidityDate|date("d/m/Y", "Europe/Paris") }}</h2>
+    <div class="shopping-cart section">
+        <div class="container">
+            <div class="row">
+                <div
+                    class="col-12">
+                    <!-- Shopping Summery -->
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>Produit</th>
+                                <th>Nom du produit</th>
+                                <th class="text-center">Prix</th>
+                                <th class="text-center">Quantité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in produits %}
+                                <tr>
+                                    <td class="image" data-title="No"><img src="{{ asset('uploads/' ~ item.product.getImage() )}}" alt="#"></td>
+
+                                    <td class="product-des text-center" data-title="Description">
+                                        <p class="product-name">
+                                            <a href="{{ path('produit_display', {'name': item.product.name }) }}">{{ item.product.name }}</a>
+                                        </p>
+                                        <p class="product-des">{{ item.product.description }}</p>
+                                    </td>
+                                    <td class="price" data-title="Price">
+                                        <span>{{ item.product.price }}€
+                                        </span>
+                                    </td>
+                                    <td class="qty text-center" data-title="Qty">
+                                        <span>{{ item.quantity }}</span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <!--/ End Shopping Summery -->
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    class="col-12">
+                    <!-- Total Amount -->
+                    <div class="total-amount">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-5 col-12">
+                                <div class="left">
+                                    <div class="coupon"></div>
+                                    <div class="checkbox"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-7 col-12">
+                                <div class="right">
+                                    <ul>
+                                        <li>Total HT<span>{{ total }}
+                                                €</span>
+                                        </li>
+                                        <li>Dont TVA(20%)<span>{{ total * 0.20  }}
+                                                €</span>
+                                        </li>
+                                        <li>Livraison<span>Gratuite</span>
+                                        </li>
+                                        <li class="last">Total TTC<span>{{ total }}
+                                                €</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
