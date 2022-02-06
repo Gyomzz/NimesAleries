@@ -20,13 +20,6 @@ export class AuthViewComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmitSignIn() {
-    this.authService
-      .signIn(this.id, this.password)
-      .then(() => {
-        this.router.navigate(['home']);
-      })
-      .catch((errMsg) => {
-        this.errMsg = errMsg;
-      });
+    this.authService.signIn(this.id, this.password);
   }
 }
