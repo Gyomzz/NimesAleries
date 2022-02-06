@@ -21,8 +21,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { GraphiqueComponent } from './components/graphique/graphique.component';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { GraphProgressComponent } from './components/graph-progress/graph-progress.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestService } from './services/request/request.service';
+import { AuthInterceptor } from './services/Auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,13 @@ import { RequestService } from './services/request/request.service';
     ReactiveFormsModule,
     NgChartsModule,
   ],
-  providers: [DataService, RequestService],
+  providers: [DataService, RequestService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
