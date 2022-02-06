@@ -1,3 +1,16 @@
+# Online Versions!
+
+## WebSite
+https://nimesaleries.herokuapp.com/
+
+## Api
+https://api-nimesaleries.herokuapp.com/
+
+## Dashboard
+incoming !
+
+
+
 # NimesAleries
 The main objective of the project is to be able to offer a functional platform highlighting the skills acquired during my training on the following technologies:
 (Html ​​/ CSS, Javascript, PHP, Angular, Symfony, Wordpress)
