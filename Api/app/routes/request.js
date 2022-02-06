@@ -3,7 +3,6 @@ const requestRoutes = express.Router();
 const ProductController = require('../controllers/product');
 const OrderController = require('../controllers/order');
 const jwt = require('jsonwebtoken')
-const SECRET = 'mykey'
 
 /* Get header bearer */
 const extractBearerToken = headerValue => {
@@ -26,7 +25,7 @@ const checkTokenMiddleware = (req, res, next) => {
         return res.status(401).json({ message: 'Error. Need a token' })
     }
 
-    jwt.verify(token, SECRET, (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
         if (err) {
             res.status(401).json({ message: 'Error. Bad token' })
         } else {
